@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppWrapper should render BackgroundImage 1`] = `
+<Image
+  blurRadius={100}
+  resizeMode="stretch"
+  source={
+    {
+      "testUri": "../../../assets/background-2.png",
+    }
+  }
+  style={
+    {
+      "position": "absolute",
+    }
+  }
+/>
+`;

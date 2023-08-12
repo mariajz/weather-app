@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dashboard should render Dashboard 1`] = `
+<RCTSafeAreaView>
+  <View
+    style={
+      {
+        "posiiton": "relative",
+      }
+    }
+  >
+    <Text>
+      ABC
+    </Text>
+  </View>
+</RCTSafeAreaView>
+`;
