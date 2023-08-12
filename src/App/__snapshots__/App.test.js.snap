@@ -2,10 +2,12 @@
 
 exports[`App should contain the heading 1`] = `
 <View>
-  <Text
-    testID="heading"
-  >
-    Hello World!
-  </Text>
+  <View>
+    <Text
+      testID="heading"
+    >
+      Hello World!
+    </Text>
+  </View>
 </View>
 `;
