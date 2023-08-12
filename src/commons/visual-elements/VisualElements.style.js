@@ -5,7 +5,7 @@ export const StyledBackgroundImage = styled(Image)`
     position: absolute;
 `;
 
-export const StyledSearchIcon = styled(Image).attrs({
+export const StyledIcon = styled(Image).attrs({
     tintColor: 'white',
 })`
     width: 25px;

@@ -1,37 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`VisualElements should render BackgroundImage 1`] = `
-<Image
-  blurRadius={100}
-  resizeMode="stretch"
-  source={
-    {
-      "testUri": "../../../assets/images/background.png",
-    }
-  }
-  style={
-    {
-      "position": "absolute",
-    }
-  }
-/>
-`;
-
-exports[`VisualElements should render SearchIcon 1`] = `
-<Image
-  source={
-    {
-      "testUri": "../../../assets/icons/search.png",
-    }
-  }
-  style={
-    {
-      "height": 25,
-      "width": 25,
-    }
-  }
-  tintColor="white"
-/>
-`;
-
 exports[`VisualElements should render Theme 1`] = `"rgba(255,255,255, [object Object])"`;

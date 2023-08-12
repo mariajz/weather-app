@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextInput } from 'react-native';
 import { SearchInputWrapper } from './SearchInput.style';
-import { SearchIcon } from '../visual-elements';
+import { Icon } from '../visual-elements';
 
 const SearchInput = ({ placeholder }) => {
     return (
@@ -10,7 +10,7 @@ const SearchInput = ({ placeholder }) => {
                 placeholder={placeholder}
                 placeholderTextColor={'black'}
             />
-            <SearchIcon />
+            <Icon iconName="search" />
         </SearchInputWrapper>
     );
 };

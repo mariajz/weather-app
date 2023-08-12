@@ -4,7 +4,7 @@ import { View as MockView } from 'react-native';
 import SearchInput from './SearchInput';
 
 jest.mock('../visual-elements', () => ({
-    SearchIcon: () => <MockView />,
+    Icon: () => <MockView />,
     Theme: {
         BackgroundWhite: jest.fn(
             opacity => `mocked rgba(255, 255, 255, ${opacity})`,
