@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchInput should render SearchInput 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "backgroundColor": "mocked rgba(255, 255, 255, 0.2)",
+      "borderBottomLeftRadius": 10,
+      "borderBottomRightRadius": 10,
+      "borderTopLeftRadius": 10,
+      "borderTopRightRadius": 10,
+      "flexDirection": "row",
+      "height": 40,
+      "justifyContent": "space-between",
+      "marginBottom": 10,
+      "marginLeft": 10,
+      "marginRight": 10,
+      "marginTop": 10,
+      "paddingBottom": 0,
+      "paddingLeft": 10,
+      "paddingRight": 10,
+      "paddingTop": 0,
+    }
+  }
+>
+  <TextInput
+    placeholderTextColor="black"
+  />
+  <View />
+</View>
+`;

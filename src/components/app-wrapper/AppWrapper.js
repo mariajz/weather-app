@@ -1,6 +1,6 @@
 import React from 'react';
 import { StatusBar, Platform } from 'react-native';
-import { BackgroundImage } from '../visual-elements';
+import { BackgroundImage } from '../../commons/visual-elements';
 
 const AppWrapper = ({ children }) => {
     return (

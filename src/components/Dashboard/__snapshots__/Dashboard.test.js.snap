@@ -9,9 +9,7 @@ exports[`Dashboard should render Dashboard 1`] = `
       }
     }
   >
-    <Text>
-      ABC
-    </Text>
+    <View />
   </View>
 </RCTSafeAreaView>
 `;

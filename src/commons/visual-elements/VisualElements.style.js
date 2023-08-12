@@ -4,3 +4,10 @@ import { Image } from 'react-native';
 export const StyledBackgroundImage = styled(Image)`
     position: absolute;
 `;
+
+export const StyledSearchIcon = styled(Image).attrs({
+    tintColor: 'white',
+})`
+    width: 25px;
+    height: 25px;
+`;

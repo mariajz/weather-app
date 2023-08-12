@@ -3,7 +3,7 @@ import React from 'react';
 import { View as MockView } from 'react-native';
 import AppWrapper from './AppWrapper';
 
-jest.mock('../visual-elements', () => ({
+jest.mock('../../commons/visual-elements', () => ({
     BackgroundImage: () => <MockView />,
 }));
 
