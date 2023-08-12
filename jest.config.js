@@ -1,4 +1,4 @@
 module.exports = {
-  preset: 'react-native',
-  testEnvironment: 'jsdom',
+    preset: 'react-native',
+    testEnvironment: 'jsdom',
 };
