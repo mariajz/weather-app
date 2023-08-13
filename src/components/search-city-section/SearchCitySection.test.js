@@ -9,6 +9,9 @@ jest.mock('../../commons/search-input/SearchInput', () => {
         default: () => <MockView />,
     };
 });
+jest.mock('../../hooks/useGetLocations', () => () => ({
+    handleFetchLocations: jest.fn(),
+}));
 
 describe('SearchCitySection', () => {
     it('should render SearchCitySection', () => {

@@ -1,16 +1,18 @@
 import React from 'react';
 import { TextInput } from 'react-native';
-import { SearchInputWrapper } from './SearchInput.style';
+import { SearchInputWrapper, StyledTouchable } from './SearchInput.style';
 import { Icon } from '../visual-elements';
 
-const SearchInput = ({ placeholder }) => {
+const SearchInput = ({ placeholder, handleOnClick }) => {
     return (
         <SearchInputWrapper>
-            <TextInput
-                placeholder={placeholder}
-                placeholderTextColor={'black'}
-            />
-            <Icon iconName="search" />
+            <StyledTouchable onPress={handleOnClick}>
+                <TextInput
+                    placeholder={placeholder}
+                    placeholderTextColor={'black'}
+                />
+                <Icon iconName="search" />
+            </StyledTouchable>
         </SearchInputWrapper>
     );
 };

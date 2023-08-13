@@ -4,15 +4,12 @@ exports[`SearchInput should render SearchInput 1`] = `
 <View
   style={
     {
-      "alignItems": "center",
       "backgroundColor": "mocked rgba(255, 255, 255, 0.2)",
       "borderBottomLeftRadius": 10,
       "borderBottomRightRadius": 10,
       "borderTopLeftRadius": 10,
       "borderTopRightRadius": 10,
-      "flexDirection": "row",
       "height": 40,
-      "justifyContent": "space-between",
       "marginBottom": 10,
       "marginLeft": 10,
       "marginRight": 10,
@@ -24,9 +21,50 @@ exports[`SearchInput should render SearchInput 1`] = `
     }
   }
 >
-  <TextInput
-    placeholderTextColor="black"
-  />
-  <View />
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={false}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "alignItems": "center",
+        "flexBasis": 0,
+        "flexDirection": "row",
+        "flexGrow": 1,
+        "flexShrink": 1,
+        "justifyContent": "space-between",
+        "opacity": 1,
+      }
+    }
+  >
+    <TextInput
+      placeholderTextColor="black"
+    />
+    <View />
+  </View>
 </View>
 `;
