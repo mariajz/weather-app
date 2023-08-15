@@ -1,0 +1,38 @@
+import { images } from '../../assets/images';
+const {
+    PartlyCloudy,
+    ModerateRain,
+    PatchyRainPossible,
+    Sunny,
+    Clear,
+    Overcast,
+    Cloudy,
+    LightRain,
+    ModerateRainAtTimes,
+    HeavyRain,
+    HeavyRainAtTimes,
+    ModerateOrHeavyFreezingRain,
+    ModerateOrHeavyRainShower,
+    ModerateOrHeavyRainWithThunder,
+    Mist,
+    other,
+} = images;
+
+export const weatherImages = {
+    'Partly cloudy': PartlyCloudy,
+    'Moderate rain': ModerateRain,
+    'Patchy rain possible': PatchyRainPossible,
+    Sunny: Sunny,
+    Clear: Clear,
+    Overcast: Overcast,
+    Cloudy: Cloudy,
+    'Light rain': LightRain,
+    'Moderate rain at times': ModerateRainAtTimes,
+    'Heavy rain': HeavyRain,
+    'Heavy rain at times': HeavyRainAtTimes,
+    'Moderate or heavy freezing rain': ModerateOrHeavyFreezingRain,
+    'Moderate or heavy rain shower': ModerateOrHeavyRainShower,
+    'Moderate or heavy rain with thunder': ModerateOrHeavyRainWithThunder,
+    Mist: Mist,
+    other: other,
+};
