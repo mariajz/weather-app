@@ -12,7 +12,7 @@ jest.mock('../components/app-wrapper', () => {
     };
 });
 
-jest.mock('../components/dashboard', () => {
+jest.mock('../screens/dashboard', () => {
     return {
         __esModule: true,
         default: ({ children }) => {

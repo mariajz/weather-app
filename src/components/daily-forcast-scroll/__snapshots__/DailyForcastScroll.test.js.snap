@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DailyForcastScroll should render DailyForcastScroll 1`] = `
+<View
+  style={
+    {
+      "height": "35%",
+      "paddingBottom": 10,
+      "paddingLeft": 10,
+      "paddingRight": 10,
+      "paddingTop": 10,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "marginBottom": 10,
+      }
+    }
+  >
+    <Image
+      source={
+        {
+          "testUri": "../../../assets/icons/calendar.png",
+        }
+      }
+      style={
+        {
+          "height": 25,
+          "width": 25,
+        }
+      }
+      testID="icon"
+      tintColor="white"
+    />
+    <Text
+      marginLeft={5}
+      size={14}
+      style={
+        {
+          "color": "white",
+          "fontSize": 14,
+          "marginLeft": 5,
+        }
+      }
+    >
+      Today's forcast
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "flexDirection": "row",
+        "width": "100%",
+      }
+    }
+  >
+    <RCTScrollView
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={true}
+      keyExtractor={[Function]}
+      onContentSizeChange={[Function]}
+      onLayout={[Function]}
+      onMomentumScrollBegin={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      removeClippedSubviews={false}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      showsHorizontalScrollIndicator={false}
+      stickyHeaderIndices={[]}
+      style={
+        {
+          "overflow": "visible",
+        }
+      }
+      viewabilityConfigCallbackPairs={[]}
+    >
+      <View />
+    </RCTScrollView>
+  </View>
+</View>
+`;

@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { Theme } from '../visual-elements';
+import { Theme } from '../../commons/visual-elements';
 import { TouchableOpacity } from 'react-native';
 
 export const SearchInputWrapper = styled.View`

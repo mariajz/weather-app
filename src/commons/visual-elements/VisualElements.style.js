@@ -11,3 +11,8 @@ export const StyledIcon = styled(Image).attrs({
     width: 25px;
     height: 25px;
 `;
+
+export const StyledImage = styled(Image)`
+    width: ${props => props.width}px;
+    height: ${props => props.height}px;
+`;

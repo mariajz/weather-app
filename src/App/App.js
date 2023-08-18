@@ -1,6 +1,6 @@
 import React from 'react';
 import AppWrapper from '../components/app-wrapper';
-import Dashboard from '../components/dashboard';
+import Dashboard from '../screens/dashboard';
 
 const App = () => {
     return (

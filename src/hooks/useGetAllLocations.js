@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
-import getLocationsApi from '../api/weatherstack-api/get-locations/Api';
+import getLocationsApi from '../api/weather-api/get-locations/Api';
 
-const useGetLocations = () => {
+const useGetAllLocations = () => {
     const handleFetchLocations = useCallback(() => {
         const queryParams = {
             key: 'key',
@@ -14,4 +14,4 @@ const useGetLocations = () => {
     return { handleFetchLocations };
 };
 
-export default useGetLocations;
+export default useGetAllLocations;

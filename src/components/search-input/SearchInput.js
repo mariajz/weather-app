@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextInput } from 'react-native';
 import { SearchInputWrapper, StyledTouchable } from './SearchInput.style';
-import { Icon } from '../visual-elements';
+import { CustomIcon } from '../../commons/visual-elements';
 
 const SearchInput = ({ placeholder, handleOnClick }) => {
     return (
@@ -11,7 +11,7 @@ const SearchInput = ({ placeholder, handleOnClick }) => {
                     placeholder={placeholder}
                     placeholderTextColor={'black'}
                 />
-                <Icon iconName="search" />
+                <CustomIcon iconName="search" />
             </StyledTouchable>
         </SearchInputWrapper>
     );

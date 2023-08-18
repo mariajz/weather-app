@@ -15,6 +15,7 @@ describe('AsyncStorage', () => {
     beforeEach(() => {
         jest.clearAllMocks();
     });
+
     it('should store data into AsyncStorage', async () => {
         mockSetItem.mockResolvedValueOnce();
 
@@ -23,6 +24,7 @@ describe('AsyncStorage', () => {
         expect(mockSetItem).toHaveBeenCalledTimes(1);
         expect(mockSetItem).toHaveBeenCalledWith('location', 'kochi');
     });
+
     it('should fetch data from AsyncStorage', async () => {
         mockGetItem.mockResolvedValueOnce('kochi');
 
@@ -32,6 +34,7 @@ describe('AsyncStorage', () => {
         expect(mockGetItem).toHaveBeenCalledWith('location');
         expect(value).toStrictEqual('kochi');
     });
+
     it('should update data in AsyncStorage', async () => {
         mockGetItem.mockResolvedValueOnce('kochi');
         await storeData('location', 'kochi');
@@ -53,6 +56,7 @@ describe('AsyncStorage', () => {
         expect(mockSetItem).toHaveBeenCalledTimes(2);
         expect(mockSetItem.mock.calls[1]).toStrictEqual(['location', 'tvm']);
     });
+
     it('should clear AsyncStorage', async () => {
         mockClear.mockResolvedValueOnce();
 

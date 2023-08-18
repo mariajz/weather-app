@@ -3,13 +3,13 @@ import React from 'react';
 import { View as MockView } from 'react-native';
 import SearchCitySection from './SearchCitySection';
 
-jest.mock('../../commons/search-input/SearchInput', () => {
+jest.mock('../search-input', () => {
     return {
         __esModule: true,
         default: () => <MockView />,
     };
 });
-jest.mock('../../hooks/useGetLocations', () => () => ({
+jest.mock('../../hooks/useGetAllLocations', () => () => ({
     handleFetchLocations: jest.fn(),
 }));
 

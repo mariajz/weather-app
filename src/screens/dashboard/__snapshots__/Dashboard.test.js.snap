@@ -9,7 +9,12 @@ exports[`Dashboard should render Dashboard 1`] = `
       }
     }
   >
-    <View />
+    <View>
+      search city section
+    </View>
+    <View>
+      forcast section
+    </View>
   </View>
 </RCTSafeAreaView>
 `;

@@ -3,13 +3,18 @@ import React from 'react';
 import { View as MockView } from 'react-native';
 import Dashboard from './Dashboard';
 
-jest.mock('../search-city-section', () => {
+jest.mock('../../components/search-city-section', () => {
     return {
         __esModule: true,
-        default: () => <MockView />,
+        default: () => <MockView>search city section</MockView>,
     };
 });
-
+jest.mock('../forcast', () => {
+    return {
+        __esModule: true,
+        default: () => <MockView>forcast section</MockView>,
+    };
+});
 describe('Dashboard', () => {
     it('should render Dashboard', () => {
         const container = render(<Dashboard />);
