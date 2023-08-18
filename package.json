@@ -9,7 +9,8 @@
         "lint:staged": "yarn lint-staged",
         "start": "react-native start",
         "test": "jest --no-coverage",
-        "test:staged": "node scripts/runTestsForChangedFiles.js"
+        "test:staged": "node scripts/runTestsForChangedFiles.js",
+        "metro": "scripts/start-metro-bundler.sh"
     },
     "dependencies": {
         "@babel/preset-react": "^7.22.5",
