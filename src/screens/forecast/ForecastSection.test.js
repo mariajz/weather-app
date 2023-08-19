@@ -1,6 +1,40 @@
 import { render } from '@testing-library/react-native';
 import React from 'react';
+import { View as MockView } from 'react-native';
 import ForecastSection from './ForecastSection';
+
+jest.mock('../../components/hourly-forecast', () => {
+    return {
+        __esModule: true,
+        default: ({ children }) => {
+            return <MockView>Hourly Forcast</MockView>;
+        },
+    };
+});
+jest.mock('../../components/uv-index', () => {
+    return {
+        __esModule: true,
+        default: ({ children }) => {
+            return <MockView>UV Index</MockView>;
+        },
+    };
+});
+jest.mock('../../components/weather-details-section', () => {
+    return {
+        __esModule: true,
+        default: ({ children }) => {
+            return <MockView>Weather Deatils </MockView>;
+        },
+    };
+});
+jest.mock('../../components/weekly-forecast', () => {
+    return {
+        __esModule: true,
+        default: ({ children }) => {
+            return <MockView>Weekly Forcast Scroll</MockView>;
+        },
+    };
+});
 
 describe('ForecastSection', () => {
     it('should render ForecastSection', () => {

@@ -33,6 +33,7 @@ export const Slider = styled.View`
     background-color: white;
     width: 7px;
     height: 7px;
+    margin-left: -5px;
     border-radius: 5px;
     border: 1px solid black;
     left: ${props => props.left}%;

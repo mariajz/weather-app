@@ -1,14 +1,15 @@
 import React from 'react';
+import { ScrollView } from 'react-native';
+import { mockSuccessResponse } from '../../api/weather-api/current-weather/mocks';
+import HourlyForecast from '../../components/hourly-forecast';
+import UVIndex from '../../components/uv-index';
+import WeatherDetailsSection from '../../components/weather-details-section';
+import WeeklyForecast from '../../components/weekly-forecast';
 import {
     fetchWeatherImage,
     filterTimeFromTimestamp,
 } from '../../utils/helpers';
 import { ForecastSectionWrapper } from './ForecastSection.style';
-import HourlyForecast from '../../components/hourly-forecast';
-import WeatherDetailsSection from '../../components/weather-details-section';
-import { mockSuccessResponse } from '../../api/weather-api/current-weather/mocks';
-import WeeklyForecast from '../../components/weekly-forecast-scroll';
-import { ScrollView } from 'react-native';
 
 const ForecastSection = () => {
     const data = mockSuccessResponse;
@@ -56,6 +57,10 @@ const ForecastSection = () => {
         forecastData: fetchWeeklyForecastData(data.forecast.forecastday),
     };
 
+    const uvIndexProps = {
+        uvIndex: data.current.uv,
+    };
+
     return (
         <>
             <ForecastSectionWrapper>
@@ -68,6 +73,7 @@ const ForecastSection = () => {
                     />
                     <HourlyForecast hourlyForecastProps={hourlyForecastProps} />
                     <WeeklyForecast weeklyForecastProps={weeklyForecastProps} />
+                    <UVIndex uvIndexProps={uvIndexProps} />
                 </ScrollView>
             </ForecastSectionWrapper>
         </>

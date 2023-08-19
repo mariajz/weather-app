@@ -43,8 +43,8 @@ export const CustomImage = ({ path, width, height }) => {
 export const GradientColorBar = ({ minValue, maxValue, sliderPosition }) => {
     const range = maxValue - minValue;
     const normalizedValue = (sliderPosition - minValue) / range;
-    let calculatedLeft = normalizedValue * 100 - 4;
-    calculatedLeft = calculatedLeft > 100 ? 95 : calculatedLeft;
+    let calculatedLeft = normalizedValue * 100;
+    calculatedLeft = calculatedLeft > 100 ? 100 : calculatedLeft;
     calculatedLeft = calculatedLeft < 0 ? 0 : calculatedLeft;
 
     return (

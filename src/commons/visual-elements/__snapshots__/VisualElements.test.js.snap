@@ -17,6 +17,7 @@ exports[`VisualElements should render GradientColorBar 1`] = `
         "borderWidth": 1,
         "height": 7,
         "left": "NaN%",
+        "marginLeft": -5,
         "position": "absolute",
         "width": 7,
       }
