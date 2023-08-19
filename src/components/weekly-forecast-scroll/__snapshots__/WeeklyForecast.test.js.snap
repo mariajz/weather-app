@@ -1,0 +1,232 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WeeklyForecast should render WeeklyForecast 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "rgba(255,255,255, 0.2)",
+      "borderBottomLeftRadius": 10,
+      "borderBottomRightRadius": 10,
+      "borderTopLeftRadius": 10,
+      "borderTopRightRadius": 10,
+      "display": "flex",
+      "flexDirection": "column",
+      "paddingBottom": 10,
+      "paddingLeft": 10,
+      "paddingRight": 10,
+      "paddingTop": 10,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "marginBottom": 4,
+      }
+    }
+  >
+    <Image
+      source={
+        {
+          "testUri": "../../../assets/icons/calendar.png",
+        }
+      }
+      style={
+        {
+          "height": 25,
+          "width": 25,
+        }
+      }
+      testID="icon"
+      tintColor="white"
+    />
+    <Text
+      marginLeft={5}
+      size={12}
+      style={
+        {
+          "color": "white",
+          "fontSize": 12,
+          "marginLeft": 5,
+        }
+      }
+    >
+      14-DAY FORECAST
+    </Text>
+  </View>
+  <RCTScrollView
+    showsVerticalScrollIndicator={false}
+  >
+    <View>
+      <View
+        style={
+          {
+            "borderColor": "grey",
+            "borderStyle": "solid",
+            "borderWidth": 0.5,
+            "marginTop": 5,
+            "width": "100%",
+          }
+        }
+      />
+      <View
+        style={
+          {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "height": 35,
+            "justifyContent": "space-between",
+            "paddingBottom": 6,
+            "paddingLeft": 10,
+            "paddingRight": 10,
+            "paddingTop": 6,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "color": "white",
+              "fontSize": 12,
+              "marginLeft": 0,
+            }
+          }
+        >
+          2023-08-14
+        </Text>
+        <View>
+          <Image
+            height={20}
+            source={11}
+            style={
+              {
+                "height": 20,
+                "width": 20,
+              }
+            }
+            testID="image"
+            width={20}
+          />
+        </View>
+        <Text
+          style={
+            {
+              "color": "white",
+              "fontSize": 12,
+              "marginLeft": 0,
+            }
+          }
+        >
+          21.1
+          °
+          C
+        </Text>
+        <Text
+          style={
+            {
+              "color": "white",
+              "fontSize": 12,
+              "marginLeft": 0,
+            }
+          }
+        >
+          30.8
+          °
+          C
+        </Text>
+      </View>
+      <View
+        style={
+          {
+            "borderColor": "grey",
+            "borderStyle": "solid",
+            "borderWidth": 0.5,
+            "marginTop": 5,
+            "width": "100%",
+          }
+        }
+      />
+      <View
+        style={
+          {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "height": 35,
+            "justifyContent": "space-between",
+            "paddingBottom": 6,
+            "paddingLeft": 10,
+            "paddingRight": 10,
+            "paddingTop": 6,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "color": "white",
+              "fontSize": 12,
+              "marginLeft": 0,
+            }
+          }
+        >
+          2023-08-15
+        </Text>
+        <View>
+          <Image
+            height={20}
+            source={9}
+            style={
+              {
+                "height": 20,
+                "width": 20,
+              }
+            }
+            testID="image"
+            width={20}
+          />
+          <Text
+            style={
+              {
+                "color": "blue",
+                "fontSize": 10,
+                "marginLeft": 0,
+              }
+            }
+          >
+            89
+            %
+          </Text>
+        </View>
+        <Text
+          style={
+            {
+              "color": "white",
+              "fontSize": 12,
+              "marginLeft": 0,
+            }
+          }
+        >
+          20.5
+          °
+          C
+        </Text>
+        <Text
+          style={
+            {
+              "color": "white",
+              "fontSize": 12,
+              "marginLeft": 0,
+            }
+          }
+        >
+          28.9
+          °
+          C
+        </Text>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;

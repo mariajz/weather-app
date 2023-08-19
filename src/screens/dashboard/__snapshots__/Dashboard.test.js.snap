@@ -13,7 +13,7 @@ exports[`Dashboard should render Dashboard 1`] = `
       search city section
     </View>
     <View>
-      forcast section
+      forecast section
     </View>
   </View>
 </RCTSafeAreaView>

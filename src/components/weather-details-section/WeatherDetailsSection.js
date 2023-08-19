@@ -7,10 +7,10 @@ import {
     StyledText as WeatherCondition,
 } from '../../commons/styles/CommonStyles';
 import {
-    Wrapper as LocationWrapper,
+    LocationWrapper,
     HeadingText,
     SubHeadingText,
-    Wrapper as WeatherDetailsWrapper,
+    WeatherDetailsWrapper,
     WeatherContentWrapper,
     ItemWrapper,
     WeatherDetailsSectionWrapper,

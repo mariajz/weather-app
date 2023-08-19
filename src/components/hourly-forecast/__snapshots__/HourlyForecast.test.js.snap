@@ -1,0 +1,237 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HourlyForecast should render HourlyForecast 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "rgba(255,255,255, 0.2)",
+      "borderBottomLeftRadius": 10,
+      "borderBottomRightRadius": 10,
+      "borderTopLeftRadius": 10,
+      "borderTopRightRadius": 10,
+      "marginBottom": 15,
+      "paddingBottom": 10,
+      "paddingLeft": 10,
+      "paddingRight": 10,
+      "paddingTop": 10,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "marginBottom": 10,
+      }
+    }
+  >
+    <Image
+      source={
+        {
+          "testUri": "../../../assets/icons/calendar.png",
+        }
+      }
+      style={
+        {
+          "height": 25,
+          "width": 25,
+        }
+      }
+      testID="icon"
+      tintColor="white"
+    />
+    <Text
+      marginLeft={5}
+      size={12}
+      style={
+        {
+          "color": "white",
+          "fontSize": 12,
+          "marginLeft": 5,
+        }
+      }
+    >
+      HOURLY FORECAST
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "flexDirection": "row",
+        "width": "100%",
+      }
+    }
+  >
+    <RCTScrollView
+      horizontal={true}
+      showsHorizontalScrollIndicator={false}
+    >
+      <View>
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "flexDirection": "column",
+              "height": 60,
+              "justifyContent": "space-between",
+              "maxWidth": 60,
+              "paddingBottom": 0,
+              "paddingLeft": 10,
+              "paddingRight": 10,
+              "paddingTop": 0,
+            }
+          }
+        >
+          <Text
+            size={10}
+            style={
+              {
+                "color": "white",
+                "fontSize": 10,
+                "marginLeft": 0,
+              }
+            }
+          >
+            12 AM
+          </Text>
+          <Image
+            height={25}
+            source={10}
+            style={
+              {
+                "height": 25,
+                "width": 25,
+              }
+            }
+            testID="image"
+            width={25}
+          />
+          <Text
+            size={10}
+            style={
+              {
+                "color": "white",
+                "fontSize": 10,
+                "marginLeft": 0,
+              }
+            }
+          >
+            24.9
+            °
+            C
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "flexDirection": "column",
+              "height": 60,
+              "justifyContent": "space-between",
+              "maxWidth": 60,
+              "paddingBottom": 0,
+              "paddingLeft": 10,
+              "paddingRight": 10,
+              "paddingTop": 0,
+            }
+          }
+        >
+          <Text
+            size={10}
+            style={
+              {
+                "color": "white",
+                "fontSize": 10,
+                "marginLeft": 0,
+              }
+            }
+          >
+            1 AM
+          </Text>
+          <Image
+            height={25}
+            source={10}
+            style={
+              {
+                "height": 25,
+                "width": 25,
+              }
+            }
+            testID="image"
+            width={25}
+          />
+          <Text
+            size={10}
+            style={
+              {
+                "color": "white",
+                "fontSize": 10,
+                "marginLeft": 0,
+              }
+            }
+          >
+            24.4
+            °
+            C
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "flexDirection": "column",
+              "height": 60,
+              "justifyContent": "space-between",
+              "maxWidth": 60,
+              "paddingBottom": 0,
+              "paddingLeft": 10,
+              "paddingRight": 10,
+              "paddingTop": 0,
+            }
+          }
+        >
+          <Text
+            size={10}
+            style={
+              {
+                "color": "white",
+                "fontSize": 10,
+                "marginLeft": 0,
+              }
+            }
+          >
+            2 AM
+          </Text>
+          <Image
+            height={25}
+            source={10}
+            style={
+              {
+                "height": 25,
+                "width": 25,
+              }
+            }
+            testID="image"
+            width={25}
+          />
+          <Text
+            size={10}
+            style={
+              {
+                "color": "white",
+                "fontSize": 10,
+                "marginLeft": 0,
+              }
+            }
+          >
+            24
+            °
+            C
+          </Text>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;

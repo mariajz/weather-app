@@ -1,19 +1,19 @@
 import { render } from '@testing-library/react-native';
 import React from 'react';
-import DailyForcastScroll from './DailyForcastScroll';
+import HourlyForecast from './HourlyForecast';
 
 const defaultProps = {
-    dailyForcastScrollProps: {
-        forcastData: [
+    hourlyForecastProps: {
+        forecastData: [
             { condition: 'Clear', temp: 24.9, time: '12 AM', weatherImage: 10 },
             { condition: 'Clear', temp: 24.4, time: '1 AM', weatherImage: 10 },
             { condition: 'Clear', temp: 24, time: '2 AM', weatherImage: 10 },
         ],
     },
 };
-describe('DailyForcastScroll', () => {
-    it('should render DailyForcastScroll', () => {
-        const container = render(<DailyForcastScroll {...defaultProps} />);
+describe('HourlyForecast', () => {
+    it('should render HourlyForecast', () => {
+        const container = render(<HourlyForecast {...defaultProps} />);
 
         expect(container).toMatchSnapshot();
     });

@@ -9,10 +9,10 @@ jest.mock('../../components/search-city-section', () => {
         default: () => <MockView>search city section</MockView>,
     };
 });
-jest.mock('../forcast', () => {
+jest.mock('../forecast', () => {
     return {
         __esModule: true,
-        default: () => <MockView>forcast section</MockView>,
+        default: () => <MockView>forecast section</MockView>,
     };
 });
 describe('Dashboard', () => {

@@ -1,7 +1,14 @@
 import styled from 'styled-components/native';
 
-export const Wrapper = styled.View`
+export const LocationWrapper = styled.View`
     align-items: center;
+    padding-bottom: 20px;
+`;
+
+export const WeatherDetailsWrapper = styled.View`
+    align-items: center;
+    padding-top: 15px;
+    padding-bottom: 25px;
 `;
 
 export const HeadingText = styled.Text`
@@ -27,7 +34,6 @@ export const ItemWrapper = styled.View`
 
 export const WeatherDetailsSectionWrapper = styled.View`
     align-items: center;
-    height: 60%;
     justify-content: space-between;
     padding: 15px 0px;
 `;
