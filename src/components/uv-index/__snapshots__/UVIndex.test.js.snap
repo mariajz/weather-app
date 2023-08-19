@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UVIndex should render UVIndex 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "mocked rgba(255, 255, 255, 0.2)",
+      "borderBottomLeftRadius": 10,
+      "borderBottomRightRadius": 10,
+      "borderTopLeftRadius": 10,
+      "borderTopRightRadius": 10,
+      "height": 170,
+      "justifyContent": "space-between",
+      "marginTop": 15,
+      "paddingBottom": 20,
+      "paddingLeft": 10,
+      "paddingRight": 10,
+      "paddingTop": 10,
+      "width": "50%",
+    }
+  }
+>
+  <View
+    style={
+      {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <View />
+    <Text
+      marginLeft={5}
+      size={14}
+      style={
+        {
+          "color": "white",
+          "fontSize": 14,
+          "marginLeft": 5,
+        }
+      }
+    >
+      UV INDEX
+    </Text>
+  </View>
+  <Text
+    size={30}
+    style={
+      {
+        "color": "white",
+        "fontSize": 30,
+        "marginLeft": 0,
+      }
+    }
+  >
+    5
+  </Text>
+  <Text
+    size={20}
+    style={
+      {
+        "color": "white",
+        "fontSize": 20,
+        "marginLeft": 0,
+      }
+    }
+  >
+    Moderate
+  </Text>
+  <View />
+  <Text
+    size={10}
+    style={
+      {
+        "color": "white",
+        "fontSize": 10,
+        "marginLeft": 0,
+      }
+    }
+  >
+    Some risk of harm. Wear sunglasses and use sunscreen
+  </Text>
+</View>
+`;
