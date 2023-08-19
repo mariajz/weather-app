@@ -1,8 +1,11 @@
 import React from 'react';
+import { View } from 'react-native';
 import {
     StyledBackgroundImage,
     StyledIcon,
     StyledImage,
+    StyledGradientBar,
+    Slider,
 } from './VisualElements.style';
 import { icons } from '../../../assets/icons';
 
@@ -21,9 +24,9 @@ export const Theme = {
     BackgroundWhite: opacity => `rgba(255,255,255, ${opacity})`,
 };
 
-export const CustomIcon = ({ iconName }) => {
+export const CustomIcon = ({ iconName, size }) => {
     const path = icons[iconName];
-    return <StyledIcon testID="icon" source={path} />;
+    return <StyledIcon testID="icon" source={path} size={size} />;
 };
 
 export const CustomImage = ({ path, width, height }) => {
@@ -34,5 +37,20 @@ export const CustomImage = ({ path, width, height }) => {
             width={width}
             height={height}
         />
+    );
+};
+
+export const GradientColorBar = ({ minValue, maxValue, sliderPosition }) => {
+    const range = maxValue - minValue;
+    const normalizedValue = (sliderPosition - minValue) / range;
+    let calculatedLeft = normalizedValue * 100 - 4;
+    calculatedLeft = calculatedLeft > 100 ? 95 : calculatedLeft;
+    calculatedLeft = calculatedLeft < 0 ? 0 : calculatedLeft;
+
+    return (
+        <View>
+            <StyledGradientBar />
+            <Slider left={calculatedLeft} />
+        </View>
     );
 };

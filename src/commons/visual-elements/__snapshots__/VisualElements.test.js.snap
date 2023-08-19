@@ -1,3 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`VisualElements should render GradientColorBar 1`] = `
+<View>
+  <View />
+  <View
+    left={NaN}
+    style={
+      {
+        "backgroundColor": "white",
+        "borderBottomLeftRadius": 5,
+        "borderBottomRightRadius": 5,
+        "borderColor": "black",
+        "borderStyle": "solid",
+        "borderTopLeftRadius": 5,
+        "borderTopRightRadius": 5,
+        "borderWidth": 1,
+        "height": 7,
+        "left": "NaN%",
+        "position": "absolute",
+        "width": 7,
+      }
+    }
+  />
+</View>
+`;
+
 exports[`VisualElements should render Theme 1`] = `"rgba(255,255,255, [object Object])"`;
