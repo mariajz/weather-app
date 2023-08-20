@@ -82,10 +82,29 @@ const getFeelsLikeText = feelsLike => {
     }
 };
 
+const getVisibilityText = visibility => {
+    if (visibility <= 0.8) {
+        return {
+            visibilityText:
+                'Visibility is severely limited due to dense fog. Drive cautiously and use low-beam headlights.',
+        };
+    } else if (visibility > 0.8 && visibility < 3.2) {
+        return {
+            visibilityText:
+                'Moderate fog is causing slightly reduced visibility.',
+        };
+    } else {
+        return {
+            visibilityText: "It's perfectly clear right now.",
+        };
+    }
+};
+
 export {
     fetchWeatherImage,
     filterTimeFromTimestamp,
     getUVWarnings,
     getHumidityText,
     getFeelsLikeText,
+    getVisibilityText,
 };

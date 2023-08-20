@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Visibility should render Visibility 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "rgba(255,255,255, 0.2)",
+      "borderBottomLeftRadius": 10,
+      "borderBottomRightRadius": 10,
+      "borderTopLeftRadius": 10,
+      "borderTopRightRadius": 10,
+      "height": 170,
+      "marginTop": 10,
+      "paddingBottom": 20,
+      "paddingLeft": 10,
+      "paddingRight": 10,
+      "paddingTop": 10,
+      "width": "49%",
+    }
+  }
+>
+  <View
+    style={
+      {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <Image
+      size={15}
+      source={
+        {
+          "testUri": "../../../assets/icons/visibility.png",
+        }
+      }
+      style={
+        {
+          "height": 15,
+          "width": 15,
+        }
+      }
+      testID="icon"
+      tintColor="white"
+    />
+    <Text
+      marginLeft={5}
+      size={14}
+      style={
+        {
+          "color": "white",
+          "fontSize": 14,
+          "marginLeft": 5,
+        }
+      }
+    >
+      VISIBILITY
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "height": 120,
+        "justifyContent": "space-between",
+        "marginTop": 8,
+      }
+    }
+  >
+    <View>
+      <Text
+        size={28}
+        style={
+          {
+            "color": "white",
+            "fontSize": 28,
+            "marginLeft": 0,
+          }
+        }
+      >
+        17 km
+      </Text>
+      <Text
+        size={20}
+        style={
+          {
+            "color": "white",
+            "fontSize": 20,
+            "marginLeft": 0,
+          }
+        }
+      />
+    </View>
+    <View />
+    <Text
+      size={10}
+      style={
+        {
+          "color": "white",
+          "fontSize": 10,
+          "marginLeft": 0,
+        }
+      }
+    >
+      It's perfectly clear right now.
+    </Text>
+  </View>
+</View>
+`;

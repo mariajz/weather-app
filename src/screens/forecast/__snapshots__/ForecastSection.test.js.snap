@@ -46,6 +46,9 @@ exports[`ForecastSection should render ForecastSection 1`] = `
         <View>
           Feels like
         </View>
+        <View>
+          Visibility
+        </View>
       </View>
     </View>
   </RCTScrollView>

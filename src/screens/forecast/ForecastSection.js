@@ -12,6 +12,7 @@ import {
 } from '../../utils/helpers';
 import { ForecastSectionWrapper, WeatherCards } from './ForecastSection.style';
 import FeelsLike from '../../components/feels-like-data';
+import Visibility from '../../components/visibility-data';
 
 const ForecastSection = () => {
     const data = mockSuccessResponse;
@@ -70,6 +71,10 @@ const ForecastSection = () => {
     const feelsLikeProps = {
         feelsLike: data.current.feelslike_c,
     };
+
+    const visibilityProps = {
+        visibility: data.current.vis_km,
+    };
     return (
         <>
             <ForecastSectionWrapper>
@@ -86,6 +91,7 @@ const ForecastSection = () => {
                         <UVIndex uvIndexProps={uvIndexProps} />
                         <Humidity humidityProps={humidityProps} />
                         <FeelsLike feelsLikeProps={feelsLikeProps} />
+                        <Visibility visibilityProps={visibilityProps} />
                     </WeatherCards>
                 </ScrollView>
             </ForecastSectionWrapper>

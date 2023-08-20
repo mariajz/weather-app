@@ -4,6 +4,7 @@ import {
     getFeelsLikeText,
     getHumidityText,
     getUVWarnings,
+    getVisibilityText,
 } from './helpers';
 
 describe('Helpers', () => {
@@ -62,13 +63,28 @@ describe('Helpers', () => {
         ${35}     | ${'Air feels dry and crisp today as humidity levels remain low.'}
         ${42}     | ${'Humidity is making it feel hotter.'}
     `(
-        'should return type as $resultType and warning as $resultWarning when feels like temperature is $feelsLike celcius',
+        'should return warning as $resultWarning when feels like temperature is $feelsLike celcius',
         ({ resultWarning, feelsLike }) => {
             const result = getFeelsLikeText(feelsLike);
 
             const { feelsLikeText } = result;
 
             expect(feelsLikeText).toStrictEqual(resultWarning);
+        },
+    );
+    it.each`
+        visibility | resultWarning
+        ${0.8}     | ${'Visibility is severely limited due to dense fog. Drive cautiously and use low-beam headlights.'}
+        ${3}       | ${'Moderate fog is causing slightly reduced visibility.'}
+        ${10}      | ${"It's perfectly clear right now."}
+    `(
+        'should return warning as $resultWarning when visibility is $visibility km',
+        ({ resultWarning, visibility }) => {
+            const result = getVisibilityText(visibility);
+
+            const { visibilityText } = result;
+
+            expect(visibilityText).toStrictEqual(resultWarning);
         },
     );
 });

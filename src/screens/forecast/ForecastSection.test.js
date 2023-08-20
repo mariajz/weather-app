@@ -6,7 +6,7 @@ import ForecastSection from './ForecastSection';
 jest.mock('../../components/hourly-forecast', () => {
     return {
         __esModule: true,
-        default: ({ children }) => {
+        default: () => {
             return <MockView>Hourly Forcast</MockView>;
         },
     };
@@ -30,15 +30,23 @@ jest.mock('../../components/humidity-data', () => {
 jest.mock('../../components/feels-like-data', () => {
     return {
         __esModule: true,
-        default: ({ children }) => {
+        default: () => {
             return <MockView>Feels like</MockView>;
+        },
+    };
+});
+jest.mock('../../components/visibility-data', () => {
+    return {
+        __esModule: true,
+        default: () => {
+            return <MockView>Visibility</MockView>;
         },
     };
 });
 jest.mock('../../components/weather-details-section', () => {
     return {
         __esModule: true,
-        default: ({ children }) => {
+        default: () => {
             return <MockView>Weather Deatils </MockView>;
         },
     };
@@ -46,7 +54,7 @@ jest.mock('../../components/weather-details-section', () => {
 jest.mock('../../components/weekly-forecast', () => {
     return {
         __esModule: true,
-        default: ({ children }) => {
+        default: () => {
             return <MockView>Weekly Forcast Scroll</MockView>;
         },
     };
