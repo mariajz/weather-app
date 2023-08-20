@@ -6,3 +6,10 @@ export const ForecastSectionWrapper = styled.View`
     flex-direction: column;
     padding: 12px;
 `;
+
+export const WeatherCards = styled.View`
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+`;

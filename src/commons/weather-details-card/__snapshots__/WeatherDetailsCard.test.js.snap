@@ -1,0 +1,183 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WeatherDetailsCard should render WeatherDetailsCard 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "mocked rgba(255, 255, 255, 0.2)",
+      "borderBottomLeftRadius": 10,
+      "borderBottomRightRadius": 10,
+      "borderTopLeftRadius": 10,
+      "borderTopRightRadius": 10,
+      "height": 170,
+      "marginTop": 10,
+      "paddingBottom": 20,
+      "paddingLeft": 10,
+      "paddingRight": 10,
+      "paddingTop": 10,
+      "width": "49%",
+    }
+  }
+>
+  <View
+    style={
+      {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <View />
+    <Text
+      marginLeft={5}
+      size={14}
+      style={
+        {
+          "color": "white",
+          "fontSize": 14,
+          "marginLeft": 5,
+        }
+      }
+    >
+      HUMIDITY
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "height": 120,
+        "justifyContent": "space-between",
+        "marginTop": 8,
+      }
+    }
+  >
+    <View>
+      <Text
+        size={28}
+        style={
+          {
+            "color": "white",
+            "fontSize": 28,
+            "marginLeft": 0,
+          }
+        }
+      >
+        51%
+      </Text>
+      <Text
+        size={20}
+        style={
+          {
+            "color": "white",
+            "fontSize": 20,
+            "marginLeft": 0,
+          }
+        }
+      >
+        Moderate
+      </Text>
+    </View>
+    <View />
+    <Text
+      size={10}
+      style={
+        {
+          "color": "white",
+          "fontSize": 10,
+          "marginLeft": 0,
+        }
+      }
+    >
+      Pleasent weather
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`WeatherDetailsCard should render WeatherDetailsCard when subtitle and content are optional 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "mocked rgba(255, 255, 255, 0.2)",
+      "borderBottomLeftRadius": 10,
+      "borderBottomRightRadius": 10,
+      "borderTopLeftRadius": 10,
+      "borderTopRightRadius": 10,
+      "height": 170,
+      "marginTop": 10,
+      "paddingBottom": 20,
+      "paddingLeft": 10,
+      "paddingRight": 10,
+      "paddingTop": 10,
+      "width": "49%",
+    }
+  }
+>
+  <View
+    style={
+      {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <View />
+    <Text
+      marginLeft={5}
+      size={14}
+      style={
+        {
+          "color": "white",
+          "fontSize": 14,
+          "marginLeft": 5,
+        }
+      }
+    >
+      HUMIDITY
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "height": 120,
+        "justifyContent": "space-between",
+        "marginTop": 8,
+      }
+    }
+  >
+    <View>
+      <Text
+        size={28}
+        style={
+          {
+            "color": "white",
+            "fontSize": 28,
+            "marginLeft": 0,
+          }
+        }
+      >
+        51%
+      </Text>
+      <Text
+        size={20}
+        style={
+          {
+            "color": "white",
+            "fontSize": 20,
+            "marginLeft": 0,
+          }
+        }
+      />
+    </View>
+    <View />
+    <Text
+      size={10}
+      style={
+        {
+          "color": "white",
+          "fontSize": 10,
+          "marginLeft": 0,
+        }
+      }
+    />
+  </View>
+</View>
+`;

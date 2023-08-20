@@ -47,4 +47,45 @@ const getUVWarnings = uvIndex => {
     }
 };
 
-export { fetchWeatherImage, filterTimeFromTimestamp, getUVWarnings };
+const getHumidityText = humidity => {
+    if (humidity <= 40) {
+        return {
+            level: 'Low',
+            humidityText:
+                'Might lead to dry skin and discomfort. Remember to stay hydrated and moisturize.',
+        };
+    } else if (humidity > 40 && humidity <= 60) {
+        return {
+            level: 'Moderate',
+            humidityText:
+                'The humidity is within a comfortable range, making for a pleasant atmosphere.',
+        };
+    } else {
+        return {
+            level: 'High',
+            humidityText:
+                'Be sure to stay cool, hydrated, and seek shade if possible.',
+        };
+    }
+};
+
+const getFeelsLikeText = feelsLike => {
+    if (feelsLike <= 40) {
+        return {
+            feelsLikeText:
+                'Air feels dry and crisp today as humidity levels remain low.',
+        };
+    } else {
+        return {
+            feelsLikeText: 'Humidity is making it feel hotter.',
+        };
+    }
+};
+
+export {
+    fetchWeatherImage,
+    filterTimeFromTimestamp,
+    getUVWarnings,
+    getHumidityText,
+    getFeelsLikeText,
+};

@@ -2,6 +2,7 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 import { mockSuccessResponse } from '../../api/weather-api/current-weather/mocks';
 import HourlyForecast from '../../components/hourly-forecast';
+import Humidity from '../../components/humidity-data';
 import UVIndex from '../../components/uv-index';
 import WeatherDetailsSection from '../../components/weather-details-section';
 import WeeklyForecast from '../../components/weekly-forecast';
@@ -9,7 +10,8 @@ import {
     fetchWeatherImage,
     filterTimeFromTimestamp,
 } from '../../utils/helpers';
-import { ForecastSectionWrapper } from './ForecastSection.style';
+import { ForecastSectionWrapper, WeatherCards } from './ForecastSection.style';
+import FeelsLike from '../../components/feels-like-data';
 
 const ForecastSection = () => {
     const data = mockSuccessResponse;
@@ -61,6 +63,13 @@ const ForecastSection = () => {
         uvIndex: data.current.uv,
     };
 
+    const humidityProps = {
+        humidity: data.current.humidity,
+    };
+
+    const feelsLikeProps = {
+        feelsLike: data.current.feelslike_c,
+    };
     return (
         <>
             <ForecastSectionWrapper>
@@ -73,7 +82,11 @@ const ForecastSection = () => {
                     />
                     <HourlyForecast hourlyForecastProps={hourlyForecastProps} />
                     <WeeklyForecast weeklyForecastProps={weeklyForecastProps} />
-                    <UVIndex uvIndexProps={uvIndexProps} />
+                    <WeatherCards>
+                        <UVIndex uvIndexProps={uvIndexProps} />
+                        <Humidity humidityProps={humidityProps} />
+                        <FeelsLike feelsLikeProps={feelsLikeProps} />
+                    </WeatherCards>
                 </ScrollView>
             </ForecastSectionWrapper>
         </>

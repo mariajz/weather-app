@@ -5,4 +5,5 @@ export const icons = {
     wind: require('./wind.png'),
     humidity: require('./humidity.png'),
     calendar: require('./calendar.png'),
+    temperature: require('./temperature.png'),
 };

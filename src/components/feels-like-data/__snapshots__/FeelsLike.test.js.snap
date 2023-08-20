@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`UVIndex should render UVIndex 1`] = `
+exports[`FeelsLike should render FeelsLike 1`] = `
 <View
   style={
     {
-      "backgroundColor": "mocked rgba(255, 255, 255, 0.2)",
+      "backgroundColor": "rgba(255,255,255, 0.2)",
       "borderBottomLeftRadius": 10,
       "borderBottomRightRadius": 10,
       "borderTopLeftRadius": 10,
@@ -26,7 +26,22 @@ exports[`UVIndex should render UVIndex 1`] = `
       }
     }
   >
-    <View />
+    <Image
+      size={15}
+      source={
+        {
+          "testUri": "../../../assets/icons/temperature.png",
+        }
+      }
+      style={
+        {
+          "height": 15,
+          "width": 15,
+        }
+      }
+      testID="icon"
+      tintColor="white"
+    />
     <Text
       marginLeft={5}
       size={14}
@@ -38,7 +53,7 @@ exports[`UVIndex should render UVIndex 1`] = `
         }
       }
     >
-      UV INDEX
+      FEELS LIKE
     </Text>
   </View>
   <View
@@ -61,7 +76,7 @@ exports[`UVIndex should render UVIndex 1`] = `
           }
         }
       >
-        5
+        38°C
       </Text>
       <Text
         size={20}
@@ -72,13 +87,9 @@ exports[`UVIndex should render UVIndex 1`] = `
             "marginLeft": 0,
           }
         }
-      >
-        Moderate
-      </Text>
+      />
     </View>
-    <View>
-      <View />
-    </View>
+    <View />
     <Text
       size={10}
       style={
@@ -89,7 +100,7 @@ exports[`UVIndex should render UVIndex 1`] = `
         }
       }
     >
-      Some risk of harm. Wear sunglasses and use sunscreen.
+      Air feels dry and crisp today as humidity levels remain low.
     </Text>
   </View>
 </View>

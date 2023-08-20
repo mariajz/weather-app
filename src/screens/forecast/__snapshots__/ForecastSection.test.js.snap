@@ -27,8 +27,25 @@ exports[`ForecastSection should render ForecastSection 1`] = `
       <View>
         Weekly Forcast Scroll
       </View>
-      <View>
-        UV Index
+      <View
+        style={
+          {
+            "display": "flex",
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "justifyContent": "space-between",
+          }
+        }
+      >
+        <View>
+          UV Index
+        </View>
+        <View>
+          Humidity
+        </View>
+        <View>
+          Feels like
+        </View>
       </View>
     </View>
   </RCTScrollView>

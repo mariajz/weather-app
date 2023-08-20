@@ -19,6 +19,22 @@ jest.mock('../../components/uv-index', () => {
         },
     };
 });
+jest.mock('../../components/humidity-data', () => {
+    return {
+        __esModule: true,
+        default: ({ children }) => {
+            return <MockView>Humidity</MockView>;
+        },
+    };
+});
+jest.mock('../../components/feels-like-data', () => {
+    return {
+        __esModule: true,
+        default: ({ children }) => {
+            return <MockView>Feels like</MockView>;
+        },
+    };
+});
 jest.mock('../../components/weather-details-section', () => {
     return {
         __esModule: true,
