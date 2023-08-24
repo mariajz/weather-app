@@ -4,13 +4,30 @@ const fetchWeatherImage = weatherType => {
     return weatherImages[weatherType];
 };
 
-const filterTimeFromTimestamp = timestamp => {
+const filterForecastDataFromCurrentHour = (forecastData, currentHour) => {
+    return forecastData.filter(item => {
+        const hour = filterHourFromTimestamp(item.twentyFourHourFormat);
+        return hour >= currentHour;
+    });
+};
+
+const filterHourFromTimestamp = timestamp => {
     const date = new Date(timestamp);
     const hour = date.getHours();
-    const AMorPM = hour >= 12 ? 'PM' : 'AM';
+    return hour;
+};
+
+const convertToTwelveHourFormat = hour => {
+    const AMorPM = hour >= 12 && hour !== 24 ? 'PM' : 'AM';
     const formattedHour = hour % 12 === 0 ? 12 : hour % 12;
 
     return `${formattedHour} ${AMorPM}`;
+};
+
+const filterTimeFromTimestamp = timestamp => {
+    const filteredHour = filterHourFromTimestamp(timestamp);
+    const convertedHour = convertToTwelveHourFormat(filteredHour);
+    return convertedHour;
 };
 
 const getUVWarnings = uvIndex => {
@@ -102,9 +119,12 @@ const getVisibilityText = visibility => {
 
 export {
     fetchWeatherImage,
+    filterHourFromTimestamp,
     filterTimeFromTimestamp,
+    convertToTwelveHourFormat,
     getUVWarnings,
     getHumidityText,
     getFeelsLikeText,
     getVisibilityText,
+    filterForecastDataFromCurrentHour,
 };

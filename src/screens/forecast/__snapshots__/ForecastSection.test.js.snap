@@ -25,7 +25,7 @@ exports[`ForecastSection should render ForecastSection 1`] = `
         Hourly Forcast
       </View>
       <View>
-        Weekly Forcast Scroll
+        Weekly Forecast Scroll
       </View>
       <View
         style={

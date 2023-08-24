@@ -5,6 +5,9 @@ import {
     getHumidityText,
     getUVWarnings,
     getVisibilityText,
+    filterHourFromTimestamp,
+    convertToTwelveHourFormat,
+    filterForecastDataFromCurrentHour,
 } from './helpers';
 
 describe('Helpers', () => {
@@ -20,6 +23,80 @@ describe('Helpers', () => {
         expect(result).toStrictEqual({
             testUri: '../../../assets/images/sun.png',
         });
+    });
+
+    it('should filterHourFromTimestamp', () => {
+        const result = filterHourFromTimestamp('2023-08-14 16:00');
+
+        expect(result).toStrictEqual(16);
+    });
+
+    it.each`
+        hour  | result
+        ${16} | ${'4 PM'}
+        ${10} | ${'10 AM'}
+        ${12} | ${'12 PM'}
+        ${24} | ${'12 AM'}
+    `(
+        'should return result as $result when hour is $hour',
+        ({ result, hour }) => {
+            const convertedHour = convertToTwelveHourFormat(hour);
+
+            expect(convertedHour).toStrictEqual(result);
+        },
+    );
+
+    it('should filterForecastDataFromCurrentHour', () => {
+        const result = filterForecastDataFromCurrentHour(
+            [
+                {
+                    condition: 'Clear',
+                    temp: 24.9,
+                    time: '12 AM',
+                    twentyFourHourFormat: '2023-08-14 00:00',
+                    weatherImage: 12,
+                },
+                {
+                    condition: 'Clear',
+                    temp: 24.4,
+                    time: '1 AM',
+                    twentyFourHourFormat: '2023-08-14 01:00',
+                    weatherImage: 12,
+                },
+                {
+                    condition: 'Clear',
+                    temp: 24.4,
+                    time: '8 AM',
+                    twentyFourHourFormat: '2023-08-14 08:00',
+                    weatherImage: 12,
+                },
+                {
+                    condition: 'Clear',
+                    temp: 24.4,
+                    time: '9 AM',
+                    twentyFourHourFormat: '2023-08-14 09:00',
+                    weatherImage: 12,
+                },
+            ],
+            8,
+        );
+
+        expect(result).toStrictEqual([
+            {
+                condition: 'Clear',
+                temp: 24.4,
+                time: '8 AM',
+                twentyFourHourFormat: '2023-08-14 08:00',
+                weatherImage: 12,
+            },
+            {
+                condition: 'Clear',
+                temp: 24.4,
+                time: '9 AM',
+                twentyFourHourFormat: '2023-08-14 09:00',
+                weatherImage: 12,
+            },
+        ]);
     });
 
     it.each`

@@ -1,21 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ScrollView } from 'react-native';
 import { mockSuccessResponse } from '../../api/weather-api/current-weather/mocks';
+import FeelsLike from '../../components/feels-like-data';
 import HourlyForecast from '../../components/hourly-forecast';
 import Humidity from '../../components/humidity-data';
 import UVIndex from '../../components/uv-index';
+import Visibility from '../../components/visibility-data';
 import WeatherDetailsSection from '../../components/weather-details-section';
 import WeeklyForecast from '../../components/weekly-forecast';
+import useCurrentHour from '../../states/useCurrentHour';
+
 import {
     fetchWeatherImage,
     filterTimeFromTimestamp,
 } from '../../utils/helpers';
 import { ForecastSectionWrapper, WeatherCards } from './ForecastSection.style';
-import FeelsLike from '../../components/feels-like-data';
-import Visibility from '../../components/visibility-data';
 
 const ForecastSection = () => {
     const data = mockSuccessResponse;
+    const { setCurrentHour } = useCurrentHour();
+
+    useEffect(() => {
+        const hourInterval = setInterval(() => {
+            setCurrentHour(new Date().getHours());
+        }, 60000);
+        return () => clearInterval(hourInterval);
+    }, [setCurrentHour]);
+
     const locationProps = {
         locationName: data.location.name,
         region: data.location.region,
@@ -37,6 +48,7 @@ const ForecastSection = () => {
             temp: item.temp_c,
             condition: item.condition.text,
             time: filterTimeFromTimestamp(item.time),
+            twentyFourHourFormat: item.time,
             weatherImage: fetchWeatherImage(item.condition.text),
         }));
 

@@ -5,12 +5,35 @@ import HourlyForecast from './HourlyForecast';
 const defaultProps = {
     hourlyForecastProps: {
         forecastData: [
-            { condition: 'Clear', temp: 24.9, time: '12 AM', weatherImage: 10 },
-            { condition: 'Clear', temp: 24.4, time: '1 AM', weatherImage: 10 },
-            { condition: 'Clear', temp: 24, time: '2 AM', weatherImage: 10 },
+            {
+                condition: 'Cloudy',
+                temp: 21.1,
+                time: '7 AM',
+                twentyFourHourFormat: '2023-08-14 07:00',
+                weatherImage: 13,
+            },
+            {
+                condition: 'Sunny',
+                temp: 22.2,
+                time: '8 AM',
+                twentyFourHourFormat: '2023-08-14 08:00',
+                weatherImage: 12,
+            },
+            {
+                condition: 'Overcast',
+                temp: 25.8,
+                time: '9 AM',
+                twentyFourHourFormat: '2023-08-14 09:00',
+                weatherImage: 13,
+            },
         ],
     },
 };
+
+jest.mock('../../states/useCurrentHour', () => () => ({
+    currentHour: 8,
+}));
+
 describe('HourlyForecast', () => {
     it('should render HourlyForecast', () => {
         const container = render(<HourlyForecast {...defaultProps} />);

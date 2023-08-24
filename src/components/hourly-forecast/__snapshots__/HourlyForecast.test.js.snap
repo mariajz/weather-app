@@ -93,11 +93,11 @@ exports[`HourlyForecast should render HourlyForecast 1`] = `
               }
             }
           >
-            12 AM
+            8 AM
           </Text>
           <Image
             height={25}
-            source={10}
+            source={12}
             style={
               {
                 "height": 25,
@@ -117,7 +117,7 @@ exports[`HourlyForecast should render HourlyForecast 1`] = `
               }
             }
           >
-            24.9
+            22.2
             °
             C
           </Text>
@@ -147,11 +147,11 @@ exports[`HourlyForecast should render HourlyForecast 1`] = `
               }
             }
           >
-            1 AM
+            9 AM
           </Text>
           <Image
             height={25}
-            source={10}
+            source={13}
             style={
               {
                 "height": 25,
@@ -171,61 +171,7 @@ exports[`HourlyForecast should render HourlyForecast 1`] = `
               }
             }
           >
-            24.4
-            °
-            C
-          </Text>
-        </View>
-        <View
-          style={
-            {
-              "alignItems": "center",
-              "flexDirection": "column",
-              "height": 60,
-              "justifyContent": "space-between",
-              "maxWidth": 60,
-              "paddingBottom": 0,
-              "paddingLeft": 10,
-              "paddingRight": 10,
-              "paddingTop": 0,
-            }
-          }
-        >
-          <Text
-            size={10}
-            style={
-              {
-                "color": "white",
-                "fontSize": 10,
-                "marginLeft": 0,
-              }
-            }
-          >
-            2 AM
-          </Text>
-          <Image
-            height={25}
-            source={10}
-            style={
-              {
-                "height": 25,
-                "width": 25,
-              }
-            }
-            testID="image"
-            width={25}
-          />
-          <Text
-            size={10}
-            style={
-              {
-                "color": "white",
-                "fontSize": 10,
-                "marginLeft": 0,
-              }
-            }
-          >
-            24
+            25.8
             °
             C
           </Text>
