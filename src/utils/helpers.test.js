@@ -8,6 +8,7 @@ import {
     filterHourFromTimestamp,
     convertToTwelveHourFormat,
     filterForecastDataFromCurrentHour,
+    filterDayFromTimestamp,
 } from './helpers';
 
 describe('Helpers', () => {
@@ -15,6 +16,12 @@ describe('Helpers', () => {
         const result = filterTimeFromTimestamp('2023-08-14 16:00');
 
         expect(result).toStrictEqual('4 PM');
+    });
+
+    it('should filterDayFromTimestamp', () => {
+        const result = filterDayFromTimestamp('2023-08-14');
+
+        expect(result).toStrictEqual(14);
     });
 
     it('should fetchWeatherImage', () => {

@@ -66,6 +66,11 @@ jest.mock('../../states/useCurrentHour', () => () => ({
     setCurrentHour: mockSetCurrentHour,
 }));
 
+const mockSetCurrentDay = jest.fn();
+jest.mock('../../states/useCurrentDay', () => () => ({
+    setCurrentDay: mockSetCurrentDay,
+}));
+
 describe('ForecastSection', () => {
     it('should render ForecastSection', () => {
         const container = render(<ForecastSection />);
@@ -85,6 +90,21 @@ describe('ForecastSection', () => {
 
         await act(async () => {
             expect(mockSetCurrentHour).toHaveBeenCalledTimes(1);
+        });
+    });
+
+    it('should call setCurrentDay when day changes by 1 day', async () => {
+        jest.useFakeTimers({
+            doNotFake: ['setTimeout'],
+        });
+
+        render(<ForecastSection />);
+
+        expect(mockSetCurrentDay).toHaveBeenCalledTimes(0);
+        jest.advanceTimersByTime(86400000);
+
+        await act(async () => {
+            expect(mockSetCurrentDay).toHaveBeenCalledTimes(1);
         });
     });
 });

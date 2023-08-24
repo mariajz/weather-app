@@ -17,6 +17,11 @@ const filterHourFromTimestamp = timestamp => {
     return hour;
 };
 
+const filterDayFromTimestamp = timestamp => {
+    const day = new Date(timestamp).getDate();
+    return day;
+};
+
 const convertToTwelveHourFormat = hour => {
     const AMorPM = hour >= 12 && hour !== 24 ? 'PM' : 'AM';
     const formattedHour = hour % 12 === 0 ? 12 : hour % 12;
@@ -121,6 +126,7 @@ export {
     fetchWeatherImage,
     filterHourFromTimestamp,
     filterTimeFromTimestamp,
+    filterDayFromTimestamp,
     convertToTwelveHourFormat,
     getUVWarnings,
     getHumidityText,

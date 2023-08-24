@@ -9,7 +9,7 @@ import Visibility from '../../components/visibility-data';
 import WeatherDetailsSection from '../../components/weather-details-section';
 import WeeklyForecast from '../../components/weekly-forecast';
 import useCurrentHour from '../../states/useCurrentHour';
-
+import useCurrentDay from '../../states/useCurrentDay';
 import {
     fetchWeatherImage,
     filterTimeFromTimestamp,
@@ -19,6 +19,7 @@ import { ForecastSectionWrapper, WeatherCards } from './ForecastSection.style';
 const ForecastSection = () => {
     const data = mockSuccessResponse;
     const { setCurrentHour } = useCurrentHour();
+    const { setCurrentDay } = useCurrentDay();
 
     useEffect(() => {
         const hourInterval = setInterval(() => {
@@ -26,6 +27,13 @@ const ForecastSection = () => {
         }, 60000);
         return () => clearInterval(hourInterval);
     }, [setCurrentHour]);
+
+    useEffect(() => {
+        const dayInterval = setInterval(() => {
+            setCurrentDay(new Date().getDay());
+        }, 86400000);
+        return () => clearInterval(dayInterval);
+    }, [setCurrentDay]);
 
     const locationProps = {
         locationName: data.location.name,
