@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Dashboard should render Dashboard 1`] = `
+exports[`Dashboard should render Dashboard when loading state is set to false 1`] = `
 <RCTSafeAreaView>
   <View
     style={
@@ -15,6 +15,16 @@ exports[`Dashboard should render Dashboard 1`] = `
     <View>
       forecast section
     </View>
+  </View>
+</RCTSafeAreaView>
+`;
+
+exports[`Dashboard should show loader when loading state is set to true 1`] = `
+<RCTSafeAreaView>
+  <View
+    testID="loader"
+  >
+    loader
   </View>
 </RCTSafeAreaView>
 `;
