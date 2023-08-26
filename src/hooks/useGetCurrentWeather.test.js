@@ -15,6 +15,13 @@ jest.mock('../states/useForcastApiResponse', () => () => ({
     setResponse: mockSetResponse,
 }));
 
+const mockShowLoader = jest.fn();
+const mockHideLoader = jest.fn();
+jest.mock('../hooks/useLoader', () => () => ({
+    showLoader: mockShowLoader,
+    hideLoader: mockHideLoader,
+}));
+
 const renderUseGetCurrentWeatherHook = () =>
     renderHook(() => useGetCurrentWeather());
 
@@ -23,6 +30,18 @@ console.error = jest.fn();
 describe('Tests for useGetCurrentWeather', () => {
     beforeEach(() => {
         jest.clearAllMocks();
+    });
+
+    it('should start loader before api call and hide it after api call', async () => {
+        const { result } = renderUseGetCurrentWeatherHook();
+        mockCall.mockResolvedValueOnce(mockSuccessResponse);
+
+        await act(async () => {
+            await result.current.handleFetchWeather();
+        });
+
+        expect(mockShowLoader).toHaveBeenCalledTimes(1);
+        expect(mockHideLoader).toHaveBeenCalledTimes(1);
     });
 
     it('should call CurrentWeatherApi with correct query params and return success response when api call is success', async () => {
