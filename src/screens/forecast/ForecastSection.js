@@ -25,13 +25,16 @@ const ForecastSection = () => {
     const [data, setData] = useState(undefined);
 
     useEffect(() => {
-        if (response) {
-            if (Object.keys(response).length === 0) {
-                handleFetchWeather();
-            }
-            setData(response);
+        if (response && Object.keys(response).length === 0) {
+            handleFetchWeather();
         }
     }, [handleFetchWeather, response]);
+
+    useEffect(() => {
+        if (response && Object.keys(response).length !== 0) {
+            setData(response);
+        }
+    }, [response]);
 
     useEffect(() => {
         const hourInterval = setInterval(() => {
