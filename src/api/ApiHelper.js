@@ -11,7 +11,7 @@ const makeApiCall = async ({ url, method }) => {
         return response.data;
     } catch (error) {
         console.log('error: ', error);
-        return {};
+        throw error;
     }
 };
 
