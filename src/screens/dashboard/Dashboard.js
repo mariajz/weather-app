@@ -9,19 +9,16 @@ import useLoading from '../../states/useLoading';
 const Dashboard = () => {
     const { loading } = useLoading();
 
-    if (loading) {
-        return (
-            <SafeAreaView>
-                <Loader />
-            </SafeAreaView>
-        );
-    }
     return (
         <SafeAreaView>
-            <DashboardWrapper>
-                <SearchCitySection />
-                <ForecastSection />
-            </DashboardWrapper>
+            <If condition={loading}>
+                <Loader />
+                <Else />
+                <DashboardWrapper>
+                    <SearchCitySection />
+                    <ForecastSection />
+                </DashboardWrapper>
+            </If>
         </SafeAreaView>
     );
 };

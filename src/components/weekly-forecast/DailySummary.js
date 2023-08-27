@@ -22,11 +22,9 @@ const DailySummary = ({ dailyWeatherItem }) => {
                 <DayText>{day}</DayText>
                 <WeatherIconWrapper>
                     <CustomImage path={condition} width={20} height={20} />
-                    {willItRain ? (
+                    <If condition={willItRain}>
                         <ChancesOfRain>{chanceOfRain}%</ChancesOfRain>
-                    ) : (
-                        <></>
-                    )}
+                    </If>
                 </WeatherIconWrapper>
                 <MinTemperature>
                     {minTemp}

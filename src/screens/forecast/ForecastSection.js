@@ -107,36 +107,28 @@ const ForecastSection = () => {
     const visibilityProps = {
         visibility: data?.current?.vis_km,
     };
-    if (data) {
-        return (
-            <>
-                <ForecastSectionWrapper>
-                    <ScrollView showsVerticalScrollIndicator={false}>
-                        <WeatherDetailsSection
-                            locationProps={locationProps}
-                            weatherIconProps={weatherIconProps}
-                            weatherDetailsProps={weatherDetailsProps}
-                            weatherSummaryProps={weatherSummaryProps}
-                        />
-                        <HourlyForecast
-                            hourlyForecastProps={hourlyForecastProps}
-                        />
-                        <WeeklyForecast
-                            weeklyForecastProps={weeklyForecastProps}
-                        />
-                        <WeatherCards>
-                            <UVIndex uvIndexProps={uvIndexProps} />
-                            <Humidity humidityProps={humidityProps} />
-                            <FeelsLike feelsLikeProps={feelsLikeProps} />
-                            <Visibility visibilityProps={visibilityProps} />
-                        </WeatherCards>
-                    </ScrollView>
-                </ForecastSectionWrapper>
-            </>
-        );
-    }
-    //write error screen here
-    return <></>;
+    return (
+        <If condition={data}>
+            <ForecastSectionWrapper>
+                <ScrollView showsVerticalScrollIndicator={false}>
+                    <WeatherDetailsSection
+                        locationProps={locationProps}
+                        weatherIconProps={weatherIconProps}
+                        weatherDetailsProps={weatherDetailsProps}
+                        weatherSummaryProps={weatherSummaryProps}
+                    />
+                    <HourlyForecast hourlyForecastProps={hourlyForecastProps} />
+                    <WeeklyForecast weeklyForecastProps={weeklyForecastProps} />
+                    <WeatherCards>
+                        <UVIndex uvIndexProps={uvIndexProps} />
+                        <Humidity humidityProps={humidityProps} />
+                        <FeelsLike feelsLikeProps={feelsLikeProps} />
+                        <Visibility visibilityProps={visibilityProps} />
+                    </WeatherCards>
+                </ScrollView>
+            </ForecastSectionWrapper>
+        </If>
+    );
 };
 
 export default ForecastSection;
