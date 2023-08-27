@@ -1,8 +1,9 @@
-import { act } from '@testing-library/react-hooks';
 import { render } from '@testing-library/react-native';
 import React from 'react';
 import { View as MockView } from 'react-native';
+import useForcastApiResponse from '../../states/useForcastApiResponse';
 import ForecastSection from './ForecastSection';
+import { mockSuccessResponse } from '../../api/weather-api/current-weather/mocks/MockSuccessResponse';
 
 jest.mock('../../components/hourly-forecast', () => {
     return {
@@ -71,7 +72,23 @@ jest.mock('../../states/useCurrentDay', () => () => ({
     setCurrentDay: mockSetCurrentDay,
 }));
 
+jest.mock('../../states/useForcastApiResponse');
+
+const mockHandleFetchWeather = jest.fn();
+jest.mock('../../hooks/useGetCurrentWeather', () => () => ({
+    handleFetchWeather: mockHandleFetchWeather,
+}));
+
 describe('ForecastSection', () => {
+    beforeEach(() => {
+        useForcastApiResponse.mockImplementation(() => ({
+            response: mockSuccessResponse,
+        }));
+    });
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
     it('should render ForecastSection', () => {
         const container = render(<ForecastSection />);
 
@@ -88,9 +105,7 @@ describe('ForecastSection', () => {
         expect(mockSetCurrentHour).toHaveBeenCalledTimes(0);
         jest.advanceTimersByTime(60000);
 
-        await act(async () => {
-            expect(mockSetCurrentHour).toHaveBeenCalledTimes(1);
-        });
+        expect(mockSetCurrentHour).toHaveBeenCalledTimes(1);
     });
 
     it('should call setCurrentDay when day changes by 1 day', async () => {
@@ -103,8 +118,26 @@ describe('ForecastSection', () => {
         expect(mockSetCurrentDay).toHaveBeenCalledTimes(0);
         jest.advanceTimersByTime(86400000);
 
-        await act(async () => {
-            expect(mockSetCurrentDay).toHaveBeenCalledTimes(1);
-        });
+        expect(mockSetCurrentDay).toHaveBeenCalledTimes(1);
     });
+
+    it.each`
+        response               | handleFetchWeatherCalledTimes | responseType
+        ${mockSuccessResponse} | ${0}                          | ${'valid and non empty'}
+        ${{}}                  | ${1}                          | ${'empty object'}
+        ${undefined}           | ${0}                          | ${'undefined'}
+    `(
+        'should call handleFetchWeather $handleFetchWeatherCalledTimes times when response is $responseType',
+        ({ response, handleFetchWeatherCalledTimes }) => {
+            useForcastApiResponse.mockImplementation(() => ({
+                response: response,
+            }));
+
+            render(<ForecastSection />);
+
+            expect(mockHandleFetchWeather).toHaveBeenCalledTimes(
+                handleFetchWeatherCalledTimes,
+            );
+        },
+    );
 });

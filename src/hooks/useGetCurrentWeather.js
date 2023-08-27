@@ -1,32 +1,38 @@
 import { useCallback } from 'react';
 import CurrentWeatherApi from '../api/weather-api/current-weather/Api';
-import useForcastApiResponse from '../states/useForcastApiResponse';
 import useLoader from '../hooks/useLoader';
+import useForcastApiResponse from '../states/useForcastApiResponse';
 
 const useGetCurrentWeather = () => {
     const { setResponse } = useForcastApiResponse();
     const { showLoader, hideLoader } = useLoader();
 
-    const handleFetchWeather = useCallback(() => {
+    const handleFetchWeather = useCallback(async () => {
         const queryParams = {
             key: 'key',
             q: '48.8567,2.3508',
             days: 14,
         };
+
         showLoader();
-        new CurrentWeatherApi({
+
+        await new CurrentWeatherApi({
             queryParams: queryParams,
         })
             .call()
             .then(response => {
-                setResponse(response);
+                if (Object.keys(response).length !== 0) {
+                    setResponse(response);
+                }
                 hideLoader();
             })
             .catch(error => {
                 console.error('Error in fetching forecast data:', error);
+                setResponse(undefined);
                 hideLoader();
+                // throw error popup here
             });
-    }, [setResponse, showLoader, hideLoader]);
+    }, [hideLoader, setResponse, showLoader]);
 
     return { handleFetchWeather };
 };

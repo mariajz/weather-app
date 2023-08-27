@@ -44,7 +44,7 @@ describe('Tests for useGetCurrentWeather', () => {
         expect(mockHideLoader).toHaveBeenCalledTimes(1);
     });
 
-    it('should call CurrentWeatherApi with correct query params and return success response when api call is success', async () => {
+    it('should call CurrentWeatherApi with correct query params', async () => {
         const { result } = renderUseGetCurrentWeatherHook();
         mockCall.mockResolvedValueOnce(mockSuccessResponse);
 
@@ -60,11 +60,32 @@ describe('Tests for useGetCurrentWeather', () => {
                 q: '48.8567,2.3508',
             },
         });
+    });
+
+    it('should set api response to response when api call is success and response isnt empty', async () => {
+        const { result } = renderUseGetCurrentWeatherHook();
+        mockCall.mockResolvedValueOnce(mockSuccessResponse);
+
+        await act(async () => {
+            await result.current.handleFetchWeather();
+        });
+
         expect(mockSetResponse).toHaveBeenCalledTimes(1);
         expect(mockSetResponse).toHaveBeenCalledWith(mockSuccessResponse);
     });
 
-    it('should call CurrentWeatherApi with correct query params and return error when api call fails', async () => {
+    it('should not set api response to response when api call is success but response is empty', async () => {
+        const { result } = renderUseGetCurrentWeatherHook();
+        mockCall.mockResolvedValueOnce({});
+
+        await act(async () => {
+            await result.current.handleFetchWeather();
+        });
+
+        expect(mockSetResponse).toHaveBeenCalledTimes(0);
+    });
+
+    it('should set response as undefined when api call fails', async () => {
         const consoleErrorSpy = jest.spyOn(console, 'error');
 
         const { result } = renderUseGetCurrentWeatherHook();
@@ -75,18 +96,12 @@ describe('Tests for useGetCurrentWeather', () => {
             await result.current.handleFetchWeather();
         });
 
-        expect(CurrentWeatherApi).toHaveBeenCalledTimes(1);
-        expect(CurrentWeatherApi).toHaveBeenCalledWith({
-            queryParams: {
-                key: 'key',
-                days: 14,
-                q: '48.8567,2.3508',
-            },
-        });
         expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
         expect(consoleErrorSpy).toHaveBeenCalledWith(
             'Error in fetching forecast data:',
             error,
         );
+        expect(mockSetResponse).toHaveBeenCalledTimes(1);
+        expect(mockSetResponse).toHaveBeenCalledWith(undefined);
     });
 });
