@@ -30,7 +30,7 @@ describe('Tests for useGetPermissions', () => {
             });
 
             expect(mockSetLocationPermission).toHaveBeenCalledTimes(1);
-            expect(mockSetLocationPermission).toHaveBeenCalledWith(true);
+            expect(mockSetLocationPermission).toHaveBeenCalledWith('granted');
         });
 
         it('should call setLocationPermission with false when location permission is denied', async () => {
@@ -44,7 +44,7 @@ describe('Tests for useGetPermissions', () => {
             });
 
             expect(mockSetLocationPermission).toHaveBeenCalledTimes(1);
-            expect(mockSetLocationPermission).toHaveBeenCalledWith(false);
+            expect(mockSetLocationPermission).toHaveBeenCalledWith('denied');
         });
     });
 });

@@ -4,6 +4,7 @@ import React from 'react';
 import { BackgroundImage } from '../commons/visual-elements';
 import Dashboard from '../screens/dashboard';
 import ContentLoader from '../screens/content-loader';
+import Permissions from '../screens/permissions';
 
 const NavigationService = () => {
     const Stack = createNativeStackNavigator();
@@ -19,7 +20,11 @@ const NavigationService = () => {
                 screenOptions={{
                     headerShown: false,
                 }}
-                initialRouteName="ContentLoaderScreen">
+                initialRouteName="PermissionsScreen">
+                <Stack.Screen
+                    name="PermissionsScreen"
+                    component={Permissions}
+                />
                 <Stack.Screen
                     name="ContentLoaderScreen"
                     component={ContentLoader}

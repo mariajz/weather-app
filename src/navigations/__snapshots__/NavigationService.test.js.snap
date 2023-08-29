@@ -6,13 +6,17 @@ exports[`NavigationService should render NavigationService 1`] = `
     BackgroundImage
   </View>,
   <View
-    initialRouteName="ContentLoaderScreen"
+    initialRouteName="PermissionsScreen"
     screenOptions={
       {
         "headerShown": false,
       }
     }
   >
+    <View
+      component={[Function]}
+      name="PermissionsScreen"
+    />
     <View
       component={[Function]}
       name="ContentLoaderScreen"

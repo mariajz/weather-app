@@ -16,9 +16,9 @@ const useGetPermissions = () => {
             );
         }
         if (permissionStatus === 'granted') {
-            setLocationPermission(true);
+            setLocationPermission('granted');
         } else {
-            setLocationPermission(false);
+            setLocationPermission('denied');
         }
     }, [setLocationPermission]);
 

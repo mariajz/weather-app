@@ -5,7 +5,7 @@ exports[`Dashboard should render Dashboard 1`] = `
   <View
     style={
       {
-        "posiiton": "relative",
+        "position": "relative",
       }
     }
   >

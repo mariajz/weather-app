@@ -1,6 +1,6 @@
 import { atom, useAtom } from 'jotai';
 
-const locationPermissionAtom = atom(false);
+const locationPermissionAtom = atom('unavailable');
 
 const useUserPermissions = () => {
     const [locationPermission, setLocationPermission] = useAtom(

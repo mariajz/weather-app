@@ -6,9 +6,10 @@ import NavigationService from './NavigationService';
 jest.mock('../commons/visual-elements', () => ({
     BackgroundImage: () => <MockView>BackgroundImage</MockView>,
 }));
-
 jest.mock('../screens/dashboard', () => () => <MockView>Dashboard</MockView>);
-
+jest.mock('../screens/permissions', () => () => (
+    <MockView>Permissions</MockView>
+));
 jest.mock('../screens/content-loader', () => () => (
     <MockView>ContentLoader</MockView>
 ));
