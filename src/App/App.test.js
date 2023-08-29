@@ -12,17 +12,17 @@ jest.mock('../components/app-wrapper', () => {
     };
 });
 
-jest.mock('../screens/dashboard', () => {
+jest.mock('../navigations', () => {
     return {
         __esModule: true,
         default: ({ children }) => {
-            return <MockView />;
+            return <MockView> Navigation service</MockView>;
         },
     };
 });
 
 describe('App', () => {
-    it('should contain the heading', () => {
+    it('should renser the app', () => {
         const container = render(<App />);
 
         expect(container).toMatchSnapshot();

@@ -1,7 +1,6 @@
-import React from 'react';
-import { StatusBar, Platform } from 'react-native';
-import { BackgroundImage } from '../../commons/visual-elements';
 import { Provider } from 'jotai';
+import React from 'react';
+import { Platform, StatusBar } from 'react-native';
 
 const AppWrapper = ({ children }) => {
     return (
@@ -12,7 +11,6 @@ const AppWrapper = ({ children }) => {
                     backgroundColor="transparent"
                 />
             )}
-            <BackgroundImage />
             {children}
         </Provider>
     );

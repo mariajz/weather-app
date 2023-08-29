@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavigationService should render NavigationService 1`] = `
+[
+  <View>
+    BackgroundImage
+  </View>,
+  <View
+    initialRouteName="ContentLoaderScreen"
+    screenOptions={
+      {
+        "headerShown": false,
+      }
+    }
+  >
+    <View
+      component={[Function]}
+      name="ContentLoaderScreen"
+    />
+    <View
+      component={[Function]}
+      name="Dashboard"
+    />
+  </View>,
+]
+`;

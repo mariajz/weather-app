@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { ScrollView } from 'react-native';
 import FeelsLike from '../../components/feels-like-data';
 import HourlyForecast from '../../components/hourly-forecast';
@@ -7,34 +7,17 @@ import UVIndex from '../../components/uv-index';
 import Visibility from '../../components/visibility-data';
 import WeatherDetailsSection from '../../components/weather-details-section';
 import WeeklyForecast from '../../components/weekly-forecast';
-import useGetCurrentWeather from '../../hooks/useGetCurrentWeather';
 import useCurrentDay from '../../states/useCurrentDay';
 import useCurrentHour from '../../states/useCurrentHour';
-import useForcastApiResponse from '../../states/useForcastApiResponse';
 import {
     fetchWeatherImage,
     filterTimeFromTimestamp,
 } from '../../utils/helpers';
 import { ForecastSectionWrapper, WeatherCards } from './ForecastSection.style';
 
-const ForecastSection = () => {
+const ForecastSection = ({ data }) => {
     const { setCurrentHour } = useCurrentHour();
     const { setCurrentDay } = useCurrentDay();
-    const { response } = useForcastApiResponse();
-    const { handleFetchWeather } = useGetCurrentWeather();
-    const [data, setData] = useState(undefined);
-
-    useEffect(() => {
-        if (response && Object.keys(response).length === 0) {
-            handleFetchWeather();
-        }
-    }, [handleFetchWeather, response]);
-
-    useEffect(() => {
-        if (response && Object.keys(response).length !== 0) {
-            setData(response);
-        }
-    }, [response]);
 
     useEffect(() => {
         const hourInterval = setInterval(() => {

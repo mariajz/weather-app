@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App should contain the heading 1`] = `
+exports[`App should renser the app 1`] = `
 <View>
-  <View />
+  <View>
+     Navigation service
+  </View>
 </View>
 `;

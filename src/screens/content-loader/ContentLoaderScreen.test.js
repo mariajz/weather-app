@@ -71,8 +71,11 @@ describe('ContentLoaderScreen', () => {
 
         render(<ContentLoaderScreen />);
 
-        expect(mockNavigate).toHaveBeenCalledWith('Dashboard', {
-            data: mockSuccessResponse,
+        expect(mockNavigate).toHaveBeenCalledWith({
+            name: 'Dashboard',
+            params: {
+                data: mockSuccessResponse,
+            },
         });
     });
 });

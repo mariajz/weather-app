@@ -17,7 +17,10 @@ const ContentLoaderScreen = () => {
 
     useEffect(() => {
         if (response && Object.keys(response).length !== 0) {
-            navigation.navigate('Dashboard', { data: response });
+            navigation.navigate({
+                name: 'Dashboard',
+                params: { data: response },
+            });
         }
     }, [navigation, response]);
 

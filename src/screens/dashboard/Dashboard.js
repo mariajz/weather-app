@@ -1,13 +1,14 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
-import { DashboardWrapper } from './Dashboard.style';
-import SearchCitySection from '../../components/search-city-section';
-import ForecastSection from '../forecast';
 import Loader from '../../components/loader';
+import SearchCitySection from '../../components/search-city-section';
 import useLoading from '../../states/useLoading';
+import ForecastSection from '../forecast';
+import { DashboardWrapper } from './Dashboard.style';
 
-const Dashboard = () => {
+const Dashboard = ({ route }) => {
     const { loading } = useLoading();
+    const forecastSectiondata = route.params.data;
 
     return (
         <SafeAreaView>
@@ -16,7 +17,7 @@ const Dashboard = () => {
                 <Else />
                 <DashboardWrapper>
                     <SearchCitySection />
-                    <ForecastSection />
+                    <ForecastSection data={forecastSectiondata} />
                 </DashboardWrapper>
             </If>
         </SafeAreaView>
