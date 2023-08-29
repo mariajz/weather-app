@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import getLocationsApi from '../api/weather-api/get-locations/Api';
 
 const useGetAllLocations = () => {
-    const handleFetchLocations = useCallback(() => {
+    const handleFetchAllLocations = useCallback(() => {
         const queryParams = {
             key: 'key',
             q: 'Palakkad',
@@ -11,7 +11,7 @@ const useGetAllLocations = () => {
         new getLocationsApi({ queryParams: queryParams }).call();
     }, []);
 
-    return { handleFetchLocations };
+    return { handleFetchAllLocations };
 };
 
 export default useGetAllLocations;

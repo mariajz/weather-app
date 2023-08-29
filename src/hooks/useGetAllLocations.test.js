@@ -14,7 +14,7 @@ describe('Tests for useGetAllLocations', () => {
         const { result } = renderuseGetAllLocationsHook();
 
         await act(async () => {
-            await result.current.handleFetchLocations();
+            await result.current.handleFetchAllLocations();
         });
 
         expect(getLocationsApi).toHaveBeenCalledTimes(1);
