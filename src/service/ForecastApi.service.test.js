@@ -26,6 +26,10 @@ const renderForecastApiService = () => renderHook(() => ForecastApiService());
 
 console.error = jest.fn();
 
+jest.mock('../states/useCurrentLocation', () => () => ({
+    currentLocation: '37.4226711,-122.0849872',
+}));
+
 describe('Tests for ForecastApi.service', () => {
     beforeEach(() => {
         jest.clearAllMocks();
@@ -56,7 +60,7 @@ describe('Tests for ForecastApi.service', () => {
             queryParams: {
                 key: 'key',
                 days: 14,
-                q: '48.8567,2.3508',
+                q: '37.4226711,-122.0849872',
             },
         });
     });

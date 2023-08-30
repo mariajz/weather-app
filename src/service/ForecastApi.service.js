@@ -3,18 +3,20 @@ import CurrentWeatherApi from '../api/weather-api/current-weather/Api';
 import { mockSuccessResponse } from '../api/weather-api/current-weather/mocks/MockSuccessResponse';
 import useLoader from '../hooks/useLoader';
 import useForcastApiResponse from '../states/useForcastApiResponse';
+import useCurrentLocation from '../states/useCurrentLocation';
 
 const ForecastApiService = () => {
     const { setResponse } = useForcastApiResponse();
     const { showLoader, hideLoader } = useLoader();
+    const { currentLocation } = useCurrentLocation();
 
     const queryParams = useMemo(
         () => ({
             key: 'key',
-            q: '48.8567,2.3508',
+            q: currentLocation,
             days: 14,
         }),
-        [],
+        [currentLocation],
     );
 
     const ForecastApi = useCallback(

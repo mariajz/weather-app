@@ -12,9 +12,19 @@ jest.mock('@react-navigation/native', () => ({
 
 jest.mock('../../states/useUserPermissions');
 
+let mockCurrentLocation;
+jest.mock('../../states/useCurrentLocation', () => () => ({
+    currentLocation: mockCurrentLocation,
+}));
+
 const mockRequestLocationPermission = jest.fn();
 jest.mock('../../hooks/useGetPermissions', () => () => ({
     requestLocationPermission: mockRequestLocationPermission,
+}));
+
+const mockFetchCurrentLocation = jest.fn();
+jest.mock('../../hooks/useFetchCurrentLocation', () => () => ({
+    fetchCurrentLocation: mockFetchCurrentLocation,
 }));
 
 describe('PermissionsScreen', () => {
@@ -33,18 +43,6 @@ describe('PermissionsScreen', () => {
         expect(container).toMatchSnapshot();
     });
 
-    it('should navigate to content loader screen when locationPermission is granted', async () => {
-        useUserPermissions.mockImplementation(() => ({
-            locationPermission: 'granted',
-        }));
-        render(<PermissionsScreen />);
-
-        expect(mockNavigate).toHaveBeenCalledWith({
-            name: 'ContentLoaderScreen',
-            params: {},
-        });
-    });
-
     it('should not navigate to content loader screen and show error message when locationPermission is denied', async () => {
         useUserPermissions.mockImplementation(() => ({
             locationPermission: 'denied',
@@ -55,5 +53,28 @@ describe('PermissionsScreen', () => {
         expect(getByTestId('text').props.children).toStrictEqual(
             "To continue, please grant location permission. You can do this by going to your device's settings and enabling location access for the app.",
         );
+    });
+
+    it('should call fetchCurrentLocation when locationPermission is granted', async () => {
+        useUserPermissions.mockImplementation(() => ({
+            locationPermission: 'granted',
+        }));
+        render(<PermissionsScreen />);
+
+        expect(mockFetchCurrentLocation).toHaveBeenCalledTimes(1);
+    });
+
+    it('should navigate to content loader screen when locationPermission is granted', async () => {
+        useUserPermissions.mockImplementation(() => ({
+            locationPermission: 'granted',
+        }));
+        mockCurrentLocation = '37.4226711,-122.0849872';
+
+        render(<PermissionsScreen />);
+
+        expect(mockNavigate).toHaveBeenCalledWith({
+            name: 'ContentLoaderScreen',
+            params: {},
+        });
     });
 });
