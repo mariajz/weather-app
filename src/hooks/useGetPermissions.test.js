@@ -12,6 +12,23 @@ jest.mock('../states/useUserPermissions', () => () => ({
 
 jest.mock('react-native-permissions', () => ({
     request: jest.fn(),
+    PERMISSIONS: {
+        ANDROID: {
+            ACCESS_COARSE_LOCATION: 'android.permission.ACCESS_COARSE_LOCATION',
+            ACCESS_FINE_LOCATION: 'android.permission.ACCESS_FINE_LOCATION',
+        },
+        IOS: {
+            LOCATION_ALWAYS: 'ios.permission.LOCATION_ALWAYS',
+            LOCATION_WHEN_IN_USE: 'ios.permission.LOCATION_WHEN_IN_USE',
+        },
+    },
+    RESULTS: {
+        BLOCKED: 'blocked',
+        DENIED: 'denied',
+        GRANTED: 'granted',
+        LIMITED: 'limited',
+        UNAVAILABLE: 'unavailable',
+    },
 }));
 
 describe('Tests for useGetPermissions', () => {
