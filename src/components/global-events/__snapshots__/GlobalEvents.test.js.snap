@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GlobalEvents should render null if no events are emitted 1`] = `null`;

@@ -1,0 +1,6 @@
+export const events = {
+    SHOW_LOADER: 'SHOW_LOADER',
+    HIDE_LOADER: 'HIDE_LOADER',
+    SHOW_POPUP: 'SHOW_POPUP',
+    REMOVE_POPUP: 'REMOVE_POPUP',
+};
