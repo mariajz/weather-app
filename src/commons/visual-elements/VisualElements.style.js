@@ -6,9 +6,9 @@ export const StyledBackgroundImage = styled(Image)`
     position: absolute;
 `;
 
-export const StyledIcon = styled(Image).attrs({
-    tintColor: 'white',
-})`
+export const StyledIcon = styled(Image).attrs(props => ({
+    tintColor: props.tintColor || 'white',
+}))`
     width: ${props => (props.size ? props.size : 25)}px;
     height: ${props => (props.size ? props.size : 25)}px;
 `;

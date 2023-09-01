@@ -24,9 +24,16 @@ export const Theme = {
     BackgroundWhite: opacity => `rgba(255,255,255, ${opacity})`,
 };
 
-export const CustomIcon = ({ iconName, size }) => {
+export const CustomIcon = ({ iconName, size, tintColor }) => {
     const path = icons[iconName];
-    return <StyledIcon testID="icon" source={path} size={size} />;
+    return (
+        <StyledIcon
+            testID="icon"
+            source={path}
+            size={size}
+            tintColor={tintColor}
+        />
+    );
 };
 
 export const CustomImage = ({ path, width, height }) => {

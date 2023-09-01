@@ -19,7 +19,7 @@ const Popup = ({ popupProps }) => {
                     <Text>{description}</Text>
                 </Content>
                 <TouchableOpacity onPress={onClose}>
-                    <CustomIcon size={20} iconName="close" />
+                    <CustomIcon size={20} iconName="close" tintColor="red" />
                 </TouchableOpacity>
             </ContentWrapper>
         </Modal>
