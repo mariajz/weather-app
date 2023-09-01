@@ -25,6 +25,10 @@ exports[`NavigationService should render NavigationService 1`] = `
       component={[Function]}
       name="Dashboard"
     />
+    <View
+      component={[Function]}
+      name="ExitScreen"
+    />
   </View>,
 ]
 `;

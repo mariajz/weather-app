@@ -3,26 +3,20 @@ import { View as MockView } from 'react-native';
 import { render } from '@testing-library/react-native';
 import App from './App';
 
-jest.mock('../components/app-wrapper', () => {
-    return {
-        __esModule: true,
-        default: ({ children }) => {
-            return <MockView children={children} />;
-        },
-    };
-});
+jest.mock('../components/app-wrapper', () => ({ children }) => (
+    <MockView children={children} />
+));
 
-jest.mock('../navigations', () => {
-    return {
-        __esModule: true,
-        default: ({ children }) => {
-            return <MockView> Navigation service</MockView>;
-        },
-    };
-});
+jest.mock('../navigations', () => () => (
+    <MockView> Navigation service</MockView>
+));
+
+jest.mock('../components/global-events', () => () => (
+    <MockView>Global Events</MockView>
+));
 
 describe('App', () => {
-    it('should renser the app', () => {
+    it('should render the app', () => {
         const container = render(<App />);
 
         expect(container).toMatchSnapshot();

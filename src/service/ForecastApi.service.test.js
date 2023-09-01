@@ -15,13 +15,6 @@ jest.mock('../states/useForcastApiResponse', () => () => ({
     setResponse: mockSetResponse,
 }));
 
-const mockShowLoader = jest.fn();
-const mockHideLoader = jest.fn();
-jest.mock('../hooks/useLoader', () => () => ({
-    showLoader: mockShowLoader,
-    hideLoader: mockHideLoader,
-}));
-
 const renderForecastApiService = () => renderHook(() => ForecastApiService());
 
 console.error = jest.fn();
@@ -30,21 +23,23 @@ jest.mock('../states/useCurrentLocation', () => () => ({
     currentLocation: '37.4226711,-122.0849872',
 }));
 
+const mockNavigate = jest.fn();
+jest.mock('@react-navigation/native', () => ({
+    useNavigation: () => ({
+        navigate: mockNavigate,
+    }),
+}));
+
+const mockShowPopup = jest.fn();
+const mockRemovePopup = jest.fn();
+jest.mock('../service/EventEmitter.service', () => ({
+    showPopup: params => mockShowPopup(params),
+    removePopup: () => mockRemovePopup(),
+}));
+
 describe('Tests for ForecastApi.service', () => {
     beforeEach(() => {
         jest.clearAllMocks();
-    });
-
-    it('should start loader before api call and hide it after api call', async () => {
-        const { result } = renderForecastApiService();
-        mockCall.mockResolvedValueOnce(mockSuccessResponse);
-
-        await act(async () => {
-            await result.current.ForecastApi({ isMocked: false });
-        });
-
-        expect(mockShowLoader).toHaveBeenCalledTimes(1);
-        expect(mockHideLoader).toHaveBeenCalledTimes(1);
     });
 
     it('should call CurrentWeatherApi with correct query params', async () => {
@@ -88,9 +83,8 @@ describe('Tests for ForecastApi.service', () => {
         expect(mockSetResponse).toHaveBeenCalledTimes(0);
     });
 
-    it('should set response as undefined when api call fails', async () => {
+    it('should set response as undefined and show error popup when api call fails', async () => {
         const consoleErrorSpy = jest.spyOn(console, 'error');
-
         const { result } = renderForecastApiService();
         const error = new Error('Error in fetching forecast data');
         mockCall.mockRejectedValueOnce(error);
@@ -106,24 +100,27 @@ describe('Tests for ForecastApi.service', () => {
         );
         expect(mockSetResponse).toHaveBeenCalledTimes(1);
         expect(mockSetResponse).toHaveBeenCalledWith(undefined);
+        expect(mockShowPopup).toHaveBeenCalledTimes(1);
+        expect(mockShowPopup).toHaveBeenCalledWith({
+            description: 'desc',
+            onClose: expect.any(Function),
+            title: 'Error',
+        });
+
+        mockShowPopup.mock.calls[0][0].onClose();
+
+        expect(mockRemovePopup).toHaveBeenCalledTimes(1);
+        expect(mockNavigate).toHaveBeenCalledTimes(1);
+        expect(mockNavigate).toHaveBeenLastCalledWith({
+            name: 'ExitScreen',
+            params: {},
+        });
     });
 });
 
 describe('Tests for ForecastApi.service with mock data', () => {
     beforeEach(() => {
         jest.clearAllMocks();
-    });
-
-    it('should start loader before setting response and hide it after setting response', async () => {
-        const { result } = renderForecastApiService();
-        mockCall.mockResolvedValueOnce(mockSuccessResponse);
-
-        await act(async () => {
-            await result.current.ForecastApi({ isMocked: true });
-        });
-
-        expect(mockShowLoader).toHaveBeenCalledTimes(1);
-        expect(mockHideLoader).toHaveBeenCalledTimes(1);
     });
 
     it('should set mock api response to response', async () => {

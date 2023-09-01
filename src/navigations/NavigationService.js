@@ -5,6 +5,7 @@ import { BackgroundImage } from '../commons/visual-elements';
 import Dashboard from '../screens/dashboard';
 import ContentLoader from '../screens/content-loader';
 import Permissions from '../screens/permissions';
+import ExitScreen from '../screens/exit';
 
 const NavigationService = () => {
     const Stack = createNativeStackNavigator();
@@ -30,6 +31,7 @@ const NavigationService = () => {
                     component={ContentLoader}
                 />
                 <Stack.Screen name="Dashboard" component={Dashboard} />
+                <Stack.Screen name="ExitScreen" component={ExitScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );

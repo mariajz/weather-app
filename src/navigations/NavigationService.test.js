@@ -13,6 +13,7 @@ jest.mock('../screens/permissions', () => () => (
 jest.mock('../screens/content-loader', () => () => (
     <MockView>ContentLoader</MockView>
 ));
+jest.mock('../screens/exit', () => () => <MockView>ExitScreen</MockView>);
 
 const MockNavigator = props => {
     const { children, ...restProps } = props;
