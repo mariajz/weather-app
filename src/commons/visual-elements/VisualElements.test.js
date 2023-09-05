@@ -37,13 +37,16 @@ describe('VisualElements', () => {
     });
 
     it('should render Icon when IconName and size is passed', () => {
-        const container = render(<CustomIcon iconName="search" size={10} />);
+        const container = render(
+            <CustomIcon iconName="search" size={10} onPress={() => {}} />,
+        );
         const { getByTestId } = container;
 
         expect(getByTestId('icon').props.source).toStrictEqual({
             testUri: '../../../assets/icons/search.png',
         });
         expect(getByTestId('icon').props.size).toStrictEqual(10);
+        expect(container).toMatchSnapshot();
     });
 
     it('should render CustomImage when props are passed', () => {

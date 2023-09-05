@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import {
     StyledBackgroundImage,
     StyledIcon,
@@ -24,15 +24,26 @@ export const Theme = {
     BackgroundWhite: opacity => `rgba(255,255,255, ${opacity})`,
 };
 
-export const CustomIcon = ({ iconName, size, tintColor }) => {
+export const CustomIcon = ({ iconName, size, tintColor, onPress }) => {
     const path = icons[iconName];
     return (
-        <StyledIcon
-            testID="icon"
-            source={path}
-            size={size}
-            tintColor={tintColor}
-        />
+        <If condition={onPress}>
+            <TouchableOpacity onPress={onPress}>
+                <StyledIcon
+                    testID="icon"
+                    source={path}
+                    size={size}
+                    tintColor={tintColor}
+                />
+            </TouchableOpacity>
+            <Else />
+            <StyledIcon
+                testID="icon"
+                source={path}
+                size={size}
+                tintColor={tintColor}
+            />
+        </If>
     );
 };
 

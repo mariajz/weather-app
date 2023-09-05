@@ -4,20 +4,48 @@ exports[`SearchInput should render SearchInput 1`] = `
 <View
   style={
     {
-      "backgroundColor": "mocked rgba(255, 255, 255, 0.2)",
-      "borderBottomLeftRadius": 10,
-      "borderBottomRightRadius": 10,
-      "borderTopLeftRadius": 10,
-      "borderTopRightRadius": 10,
-      "height": 40,
-      "marginBottom": 10,
-      "marginLeft": 10,
-      "marginRight": 10,
-      "marginTop": 10,
-      "paddingBottom": 0,
-      "paddingLeft": 10,
-      "paddingRight": 10,
-      "paddingTop": 0,
+      "height": 60,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "alignSelf": "flex-end",
+        "backgroundColor": "mocked rgba(255, 255, 255, 0.5)",
+        "borderBottomLeftRadius": 20,
+        "borderBottomRightRadius": 20,
+        "borderTopLeftRadius": 20,
+        "borderTopRightRadius": 20,
+        "height": 40,
+        "marginTop": 10,
+        "paddingBottom": 10,
+        "paddingLeft": 10,
+        "paddingRight": 10,
+        "paddingTop": 10,
+        "position": "absolute",
+        "right": 12,
+        "width": 40,
+      }
+    }
+  >
+    <View
+      iconName="search"
+      onPress={[Function]}
+      testID="search-icon"
+      tintColor="black"
+    >
+      Search Icon
+    </View>
+  </View>
+</View>
+`;
+
+exports[`SearchInput should render SearchInput with input box when search icon is clicked 1`] = `
+<View
+  style={
+    {
+      "height": 60,
     }
   }
 >
@@ -52,19 +80,76 @@ exports[`SearchInput should render SearchInput 1`] = `
     style={
       {
         "alignItems": "center",
+        "borderBottomLeftRadius": 10,
+        "borderBottomRightRadius": 10,
+        "borderTopLeftRadius": 10,
+        "borderTopRightRadius": 10,
         "flexBasis": 0,
         "flexDirection": "row",
         "flexGrow": 1,
         "flexShrink": 1,
         "justifyContent": "space-between",
+        "marginBottom": 10,
+        "marginLeft": 10,
+        "marginRight": 10,
+        "marginTop": 10,
         "opacity": 1,
+        "paddingLeft": 10,
+        "paddingRight": 2,
       }
     }
   >
-    <TextInput
-      placeholderTextColor="black"
-    />
-    <View />
+    <View
+      style={
+        {
+          "backgroundColor": "mocked rgba(255, 255, 255, 0.2)",
+          "borderBottomLeftRadius": 20,
+          "borderBottomRightRadius": 20,
+          "borderTopLeftRadius": 20,
+          "borderTopRightRadius": 20,
+          "height": 40,
+          "paddingBottom": 10,
+          "paddingLeft": 15,
+          "paddingRight": 15,
+          "paddingTop": 10,
+          "width": "100%",
+        }
+      }
+    >
+      <TextInput
+        placeholderTextColor="black"
+      />
+    </View>
+  </View>
+  <View
+    style={
+      {
+        "alignSelf": "flex-end",
+        "backgroundColor": "mocked rgba(255, 255, 255, 0.5)",
+        "borderBottomLeftRadius": 20,
+        "borderBottomRightRadius": 20,
+        "borderTopLeftRadius": 20,
+        "borderTopRightRadius": 20,
+        "height": 40,
+        "marginTop": 10,
+        "paddingBottom": 10,
+        "paddingLeft": 10,
+        "paddingRight": 10,
+        "paddingTop": 10,
+        "position": "absolute",
+        "right": 12,
+        "width": 40,
+      }
+    }
+  >
+    <View
+      iconName="search"
+      onPress={[Function]}
+      testID="search-icon"
+      tintColor="black"
+    >
+      Search Icon
+    </View>
   </View>
 </View>
 `;
