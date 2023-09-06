@@ -24,25 +24,15 @@ export const Theme = {
     BackgroundWhite: opacity => `rgba(255,255,255, ${opacity})`,
 };
 
-export const CustomIcon = ({ iconName, size, tintColor, onPress }) => {
+export const CustomIcon = ({ onPress, iconName, ...restProps }) => {
     const path = icons[iconName];
     return (
         <If condition={onPress}>
             <TouchableOpacity onPress={onPress}>
-                <StyledIcon
-                    testID="icon"
-                    source={path}
-                    size={size}
-                    tintColor={tintColor}
-                />
+                <StyledIcon testID="icon" source={path} {...restProps} />
             </TouchableOpacity>
             <Else />
-            <StyledIcon
-                testID="icon"
-                source={path}
-                size={size}
-                tintColor={tintColor}
-            />
+            <StyledIcon testID="icon" source={path} {...restProps} />
         </If>
     );
 };

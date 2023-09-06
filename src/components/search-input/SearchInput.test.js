@@ -12,6 +12,12 @@ jest.mock('../../commons/visual-elements', () => ({
     },
 }));
 
+jest.mock('../../commons/styles', () => ({
+    Divider: () => <MockView />,
+}));
+
+jest.mock('react-native-modal', () => props => <MockView {...props} />);
+
 describe('SearchInput', () => {
     it('should render SearchInput', () => {
         const container = render(<SearchInput />);

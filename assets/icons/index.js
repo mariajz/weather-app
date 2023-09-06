@@ -7,5 +7,7 @@ export const icons = {
     calendar: require('./calendar.png'),
     temperature: require('./temperature.png'),
     visibility: require('./visibility.png'),
-    close: require('./close.png'),
+    close: require('./close-thin.png'),
+    closeThick: require('./close-thick.png'),
+    pin: require('./pin.png'),
 };

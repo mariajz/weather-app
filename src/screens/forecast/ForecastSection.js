@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, Platform, KeyboardAvoidingView } from 'react-native';
 import FeelsLike from '../../components/feels-like-data';
 import HourlyForecast from '../../components/hourly-forecast';
 import Humidity from '../../components/humidity-data';
@@ -97,20 +97,27 @@ const ForecastSection = ({ data }) => {
         <If condition={data}>
             <ForecastSectionWrapper>
                 <ScrollView showsVerticalScrollIndicator={false}>
-                    <WeatherDetailsSection
-                        locationProps={locationProps}
-                        weatherIconProps={weatherIconProps}
-                        weatherDetailsProps={weatherDetailsProps}
-                        weatherSummaryProps={weatherSummaryProps}
-                    />
-                    <HourlyForecast hourlyForecastProps={hourlyForecastProps} />
-                    <WeeklyForecast weeklyForecastProps={weeklyForecastProps} />
-                    <WeatherCards>
-                        <UVIndex uvIndexProps={uvIndexProps} />
-                        <Humidity humidityProps={humidityProps} />
-                        <FeelsLike feelsLikeProps={feelsLikeProps} />
-                        <Visibility visibilityProps={visibilityProps} />
-                    </WeatherCards>
+                    <KeyboardAvoidingView
+                        behavior={Platform.OS === 'ios' ? 'padding' : null}>
+                        <WeatherDetailsSection
+                            locationProps={locationProps}
+                            weatherIconProps={weatherIconProps}
+                            weatherDetailsProps={weatherDetailsProps}
+                            weatherSummaryProps={weatherSummaryProps}
+                        />
+                        <HourlyForecast
+                            hourlyForecastProps={hourlyForecastProps}
+                        />
+                        <WeeklyForecast
+                            weeklyForecastProps={weeklyForecastProps}
+                        />
+                        <WeatherCards>
+                            <UVIndex uvIndexProps={uvIndexProps} />
+                            <Humidity humidityProps={humidityProps} />
+                            <FeelsLike feelsLikeProps={feelsLikeProps} />
+                            <Visibility visibilityProps={visibilityProps} />
+                        </WeatherCards>
+                    </KeyboardAvoidingView>
                 </ScrollView>
             </ForecastSectionWrapper>
         </If>
