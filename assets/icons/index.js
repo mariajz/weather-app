@@ -8,4 +8,5 @@ export const icons = {
     temperature: require('./temperature.png'),
     visibility: require('./visibility.png'),
     close: require('./close.png'),
+    pin: require('./pin.png'),
 };
