@@ -1,14 +1,9 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
-import Modal from 'react-native-modal';
 import { Divider } from '../../commons/styles';
-import { CustomIcon } from '../../commons/visual-elements';
-import {
-    SearchInputWrapper,
-    StyledIcon,
-    StyledTouchable,
-} from './SearchInput.style';
+import { CustomIcon, Theme } from '../../commons/visual-elements';
+import { SearchInputWrapper, StyledIcon } from './SearchInput.style';
 
 const StyledSearchIcon = ({ handleOnSearchIconPress, showSearchIcon }) => (
     <StyledIcon>
@@ -64,18 +59,24 @@ const SearchInput = ({ placeholder }) => {
         // make api call to fetch forecast data
     };
 
+    // TODO
+    // click outside n close
+    // move styles to style file
+    // click of icon
+
     return (
         <SearchInputWrapper>
-            <StyledTouchable>
-                <View style={{ width: '100%' }}>
+            <View
+                style={{
+                    backgroundColor: Theme.BackgroundWhite(0.2),
+                    borderRadius: 20,
+                    height: 40,
+                    padding: 10,
+                    margin: 10,
+                }}>
+                <View>
                     <If condition={showDropDown}>
-                        <Modal
-                            visible={showDropDown}
-                            onBackdropPress={() => setShowDropDown(false)}
-                            style={{
-                                position: 'absolute',
-                                top: 50,
-                            }}>
+                        <View>
                             <TextInput
                                 placeholder={placeholder}
                                 placeholderTextColor={'black'}
@@ -84,7 +85,7 @@ const SearchInput = ({ placeholder }) => {
                             <View
                                 style={{
                                     borderRadius: 10,
-                                    marginTop: 12,
+                                    marginTop: 16,
                                     backgroundColor: 'white',
                                 }}>
                                 <If
@@ -125,7 +126,7 @@ const SearchInput = ({ placeholder }) => {
                                     })}
                                 </If>
                             </View>
-                        </Modal>
+                        </View>
                         <Else />
                         <TextInput
                             placeholder={placeholder}
@@ -134,7 +135,7 @@ const SearchInput = ({ placeholder }) => {
                         />
                     </If>
                 </View>
-            </StyledTouchable>
+            </View>
             <StyledSearchIcon
                 handleOnSearchIconPress={handleOnSearchIconPress}
             />

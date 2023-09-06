@@ -10,7 +10,7 @@ const Dashboard = ({ route }) => {
         <SafeAreaView>
             <DashboardWrapper>
                 <SearchCitySection />
-                <ForecastSection data={forecastSectiondata} />
+                {/* <ForecastSection data={forecastSectiondata} /> */}
             </DashboardWrapper>
         </SafeAreaView>
     );
