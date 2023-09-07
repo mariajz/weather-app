@@ -1,20 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Dashboard should render Dashboard 1`] = `
-<RCTSafeAreaView>
-  <View
-    style={
-      {
-        "position": "relative",
-      }
+<View
+  style={
+    {
+      "position": "relative",
     }
-  >
-    <View>
-      search city section
-    </View>
-    <View>
-      forecast section
-    </View>
+  }
+>
+  <View>
+    search city section
   </View>
-</RCTSafeAreaView>
+  <View>
+    forecast section
+  </View>
+</View>
 `;

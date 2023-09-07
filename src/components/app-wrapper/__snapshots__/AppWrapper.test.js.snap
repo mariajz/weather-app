@@ -1,3 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AppWrapper should render SafeArea for android and ios 1`] = `null`;
+exports[`AppWrapper should render SafeArea for android and ios 1`] = `
+<RCTSafeAreaView
+  style={
+    {
+      "flexBasis": 0,
+      "flexGrow": 1,
+      "flexShrink": 1,
+    }
+  }
+/>
+`;
