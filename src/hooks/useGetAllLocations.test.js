@@ -1,28 +1,29 @@
-import { renderHook, act } from '@testing-library/react-hooks';
+import { act, renderHook } from '@testing-library/react-hooks';
 import useGetAllLocations from './useGetAllLocations';
-import getLocationsApi from '../api/weather-api/get-locations/Api';
 
-jest.mock('../api/weather-api/get-locations/Api', () => {
-    return jest.fn().mockImplementation(() => ({
-        call: jest.fn(),
-    }));
-});
-const renderuseGetAllLocationsHook = () =>
+const mockSearchLocationApi = jest.fn();
+jest.mock('../service/SearchLocationApi.service', () => () => ({
+    SearchLocationApi: mockSearchLocationApi,
+}));
+
+const renderUseGetAllLocationsHook = () =>
     renderHook(() => useGetAllLocations());
+
 describe('Tests for useGetAllLocations', () => {
-    it('should call getLocationsApi with correct query params', async () => {
-        const { result } = renderuseGetAllLocationsHook();
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
+
+    it('should call SearchLocationApi', async () => {
+        const { result } = renderUseGetAllLocationsHook();
 
         await act(async () => {
-            await result.current.handleFetchAllLocations();
+            await result.current.handleFetchLocationData();
         });
 
-        expect(getLocationsApi).toHaveBeenCalledTimes(1);
-        expect(getLocationsApi).toHaveBeenCalledWith({
-            queryParams: {
-                key: 'key',
-                q: 'Palakkad',
-            },
+        expect(mockSearchLocationApi).toHaveBeenCalledTimes(1);
+        expect(mockSearchLocationApi).toHaveBeenCalledWith({
+            isMocked: true,
         });
     });
 });

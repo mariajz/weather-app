@@ -1,17 +1,15 @@
 import { useCallback } from 'react';
-import getLocationsApi from '../api/weather-api/get-locations/Api';
+import SearchLocationApiService from '../service/SearchLocationApi.service';
 
 const useGetAllLocations = () => {
-    const handleFetchAllLocations = useCallback(() => {
-        const queryParams = {
-            key: 'key',
-            q: 'Palakkad',
-        };
+    const { SearchLocationApi } = SearchLocationApiService();
 
-        new getLocationsApi({ queryParams: queryParams }).call();
-    }, []);
+    const handleFetchLocationData = useCallback(async () => {
+        // change isMocked to false to call actual api
+        await SearchLocationApi({ isMocked: true });
+    }, [SearchLocationApi]);
 
-    return { handleFetchAllLocations };
+    return { handleFetchLocationData };
 };
 
 export default useGetAllLocations;
