@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { CustomIcon } from '../../commons/visual-elements';
 import LocationDetailRow from '../search-city-section/DetailRow';
+import { mockSuccessResponse } from '../../api/weather-api/get-locations/mocks';
 import {
     DropDown,
     ModalWrapper,
@@ -20,13 +21,7 @@ const SearchInput = ({ placeholder }) => {
 
     const [searchIconPressed, setSearchIconPressed] = useState(false);
 
-    const [locations] = useState([
-        { name: 'abc', country: 'India', key: 1 },
-        { name: 'abc', country: 'India', key: 2 },
-        { name: 'abc', country: 'India', key: 3 },
-        { name: 'abc', country: 'India', key: 4 },
-        { name: 'abc', country: 'India', key: 5 },
-    ]);
+    const [locations] = useState(mockSuccessResponse);
 
     const handleOnSearchIconPress = () => {
         setSearchIconPressed(!searchIconPressed);

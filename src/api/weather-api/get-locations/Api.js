@@ -5,7 +5,7 @@ class Api extends ApiService {
     constructor({ queryParams }) {
         super({
             method: 'GET',
-            url: `${baseUrl}/v1/forecast.json`,
+            url: `${baseUrl}/v1/search.json`,
             queryParams: queryParams,
         });
     }
