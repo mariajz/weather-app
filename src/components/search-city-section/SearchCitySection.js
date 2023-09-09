@@ -1,6 +1,6 @@
 import React from 'react';
-import SearchInput from '../search-input';
 import useGetAllLocations from '../../hooks/useGetAllLocations';
+import SearchInput from '../search-input';
 
 const SearchCitySection = () => {
     const { handleFetchLocations } = useGetAllLocations();

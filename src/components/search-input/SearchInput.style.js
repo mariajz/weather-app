@@ -1,4 +1,4 @@
-import { Platform } from 'react-native';
+import { Platform, TouchableOpacity } from 'react-native';
 import Modal from 'react-native-modal';
 import styled from 'styled-components/native';
 import { CustomIcon, Theme } from '../../commons/visual-elements';
@@ -38,17 +38,6 @@ export const DropDown = styled.View`
     background-color: white;
 `;
 
-export const Row = styled.TouchableOpacity`
-    margin-left: 10px;
-    flex-direction: row;
-    align-items: center;
-    height: 25px;
-`;
-
-export const StyledText = styled.Text`
-    margin-left: 5px;
-`;
-
 export const SearchInputWrapper = styled.View`
     height: 8%;
 `;
@@ -57,7 +46,7 @@ export const StyledCustomIcon = styled(CustomIcon)`
     margin: 6px;
 `;
 
-export const StyledTouchableOpacity = styled.TouchableOpacity`
+export const StyledTouchableOpacity = styled(TouchableOpacity)`
     width: 100%;
     height: 100%;
 `;

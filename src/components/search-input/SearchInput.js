@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import { Divider } from '../../commons/styles';
 import { CustomIcon } from '../../commons/visual-elements';
+import LocationDetailRow from '../search-city-section/DetailRow';
 import {
     DropDown,
     ModalWrapper,
-    Row,
     SearchInputWrapper,
     StyledCustomIcon,
     StyledIcon,
     StyledModal,
-    StyledText,
     StyledTextInput,
     StyledTouchableOpacity,
 } from './SearchInput.style';
@@ -18,6 +16,7 @@ import {
 const SearchInput = ({ placeholder }) => {
     const [showDropDown, setShowDropDown] = useState(false);
     const [showModal, setShowModal] = useState(true);
+    const [input, setInput] = useState('');
 
     const [searchIconPressed, setSearchIconPressed] = useState(false);
 
@@ -33,8 +32,14 @@ const SearchInput = ({ placeholder }) => {
         setSearchIconPressed(!searchIconPressed);
         setShowModal(true);
     };
+    const handleOnBackdropPress = () => {
+        setShowDropDown(false);
+        setShowModal(false);
+        setSearchIconPressed(!searchIconPressed);
+    };
 
     const handleOnChangeText = data => {
+        setInput(data);
         if (data.length === 0) {
             setShowDropDown(false);
         }
@@ -57,53 +62,36 @@ const SearchInput = ({ placeholder }) => {
             <If condition={searchIconPressed}>
                 <ModalWrapper>
                     <StyledTouchableOpacity
+                        testID="text-input-wrapper"
                         onPress={() => {
                             setShowModal(true);
                         }}>
                         <View>
                             <StyledModal
                                 visible={showModal}
-                                onBackdropPress={() => {
-                                    setShowDropDown(false);
-                                    setShowModal(false);
-                                    setSearchIconPressed(!searchIconPressed);
-                                }}>
+                                testID="modal"
+                                onBackdropPress={handleOnBackdropPress}>
                                 <StyledTextInput
                                     placeholder={placeholder}
                                     placeholderTextColor="black"
                                     onChangeText={handleOnChangeText}
+                                    value={input}
+                                    testID="text-input"
                                 />
                                 <If condition={showDropDown}>
-                                    <DropDown>
+                                    <DropDown testID="dropdown">
                                         <If condition={locations.length > 0}>
                                             {locations.map(
                                                 (location, index) => {
                                                     return (
-                                                        <React.Fragment
-                                                            key={index}>
-                                                            <Row
-                                                                onPress={() => {
-                                                                    handleOnDropDownItemPress(
-                                                                        location,
-                                                                    );
-                                                                }}>
-                                                                <CustomIcon
-                                                                    iconName="pin"
-                                                                    size={12}
-                                                                    tintColor="black"
-                                                                />
-                                                                <StyledText>
-                                                                    {
-                                                                        location?.name
-                                                                    }
-                                                                    ,
-                                                                    {
-                                                                        location?.country
-                                                                    }
-                                                                </StyledText>
-                                                            </Row>
-                                                            <Divider />
-                                                        </React.Fragment>
+                                                        <LocationDetailRow
+                                                            index={index}
+                                                            handleOnDropDownItemPress={
+                                                                handleOnDropDownItemPress
+                                                            }
+                                                            location={location}
+                                                            key={index}
+                                                        />
                                                     );
                                                 },
                                             )}

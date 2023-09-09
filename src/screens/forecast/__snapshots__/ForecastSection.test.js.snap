@@ -18,45 +18,36 @@ exports[`ForecastSection should render ForecastSection 1`] = `
     showsVerticalScrollIndicator={false}
   >
     <View>
+      <View>
+        Weather Deatils 
+      </View>
+      <View>
+        Hourly Forcast
+      </View>
+      <View>
+        Weekly Forecast Scroll
+      </View>
       <View
-        onLayout={[Function]}
         style={
           {
-            "paddingBottom": 0,
+            "display": "flex",
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "justifyContent": "space-between",
           }
         }
       >
         <View>
-          Weather Deatils 
+          UV Index
         </View>
         <View>
-          Hourly Forcast
+          Humidity
         </View>
         <View>
-          Weekly Forecast Scroll
+          Feels like
         </View>
-        <View
-          style={
-            {
-              "display": "flex",
-              "flexDirection": "row",
-              "flexWrap": "wrap",
-              "justifyContent": "space-between",
-            }
-          }
-        >
-          <View>
-            UV Index
-          </View>
-          <View>
-            Humidity
-          </View>
-          <View>
-            Feels like
-          </View>
-          <View>
-            Visibility
-          </View>
+        <View>
+          Visibility
         </View>
       </View>
     </View>
