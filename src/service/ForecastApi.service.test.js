@@ -23,6 +23,11 @@ jest.mock('../states/useCurrentLocation', () => () => ({
     currentLocation: '37.4226711,-122.0849872',
 }));
 
+let mockSearchLocation;
+jest.mock('../states/useSearchLocation', () => () => ({
+    searchLocation: mockSearchLocation,
+}));
+
 const mockNavigate = jest.fn();
 jest.mock('@react-navigation/native', () => ({
     useNavigation: () => ({
@@ -114,6 +119,25 @@ describe('Tests for ForecastApi.service', () => {
         expect(mockNavigate).toHaveBeenLastCalledWith({
             name: 'ExitScreen',
             params: {},
+        });
+    });
+
+    it('should search with currentLocation when searchLocation isnt available', async () => {
+        mockSearchLocation = '27.4226711,-122.0849872';
+        const { result } = renderForecastApiService();
+        mockCall.mockResolvedValueOnce(mockSuccessResponse);
+
+        await act(async () => {
+            await result.current.ForecastApi({ isMocked: false });
+        });
+
+        expect(CurrentWeatherApi).toHaveBeenCalledTimes(1);
+        expect(CurrentWeatherApi).toHaveBeenCalledWith({
+            queryParams: {
+                key: 'key',
+                days: 14,
+                q: '27.4226711,-122.0849872',
+            },
         });
     });
 });

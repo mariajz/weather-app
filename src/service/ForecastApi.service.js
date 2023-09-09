@@ -4,20 +4,23 @@ import CurrentWeatherApi from '../api/weather-api/current-weather/Api';
 import { mockSuccessResponse } from '../api/weather-api/current-weather/mocks/MockSuccessResponse';
 import { showPopup, removePopup } from '../service/EventEmitter.service';
 import useCurrentLocation from '../states/useCurrentLocation';
+import useSearchLocation from '../states/useSearchLocation';
 import useForcastApiResponse from '../states/useForcastApiResponse';
 
 const ForecastApiService = () => {
     const { setResponse } = useForcastApiResponse();
     const { currentLocation } = useCurrentLocation();
+    const { searchLocation } = useSearchLocation();
+    const location = searchLocation || currentLocation;
     const navigation = useNavigation();
 
     const queryParams = useMemo(
         () => ({
             key: 'key',
-            q: currentLocation,
+            q: location,
             days: 14,
         }),
-        [currentLocation],
+        [location],
     );
 
     const errorPopupProps = {
