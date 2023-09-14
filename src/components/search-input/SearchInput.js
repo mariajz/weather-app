@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { CustomIcon } from '../../commons/visual-elements';
+import useGetAllLocations from '../../hooks/useGetAllLocations';
+import useLocationSearchApiResponse from '../../states/useLocationSearchApiResponse';
 import LocationDetailRow from '../search-city-section/DetailRow';
-import { mockSuccessResponse } from '../../api/weather-api/get-locations/mocks';
 import {
     DropDown,
     ModalWrapper,
@@ -18,10 +19,10 @@ const SearchInput = ({ placeholder }) => {
     const [showDropDown, setShowDropDown] = useState(false);
     const [showModal, setShowModal] = useState(true);
     const [input, setInput] = useState('');
-
     const [searchIconPressed, setSearchIconPressed] = useState(false);
-
-    const [locations] = useState(mockSuccessResponse);
+    const { response } = useLocationSearchApiResponse();
+    const [locations, setLocations] = useState([]);
+    const { handleFetchLocationData } = useGetAllLocations();
 
     const handleOnSearchIconPress = () => {
         setSearchIconPressed(!searchIconPressed);
@@ -33,23 +34,31 @@ const SearchInput = ({ placeholder }) => {
         setSearchIconPressed(!searchIconPressed);
     };
 
-    const handleOnChangeText = data => {
-        setInput(data);
-        if (data.length === 0) {
-            setShowDropDown(false);
+    useEffect(() => {
+        if (response.length !== 0) {
+            setLocations(response);
         }
-        if (data.length > 3) {
-            // make api call to fetch locations
-            if (locations.length !== 0) {
-                setShowDropDown(true);
-            } else {
+        setShowDropDown(response.length !== 0);
+    }, [response]);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            if (input.length === 0) {
                 setShowDropDown(false);
+            } else if (input.length > 3) {
+                handleFetchLocationData(input);
             }
-        }
+        }, 2000);
+
+        return () => clearTimeout(timer);
+    }, [handleFetchLocationData, input]);
+
+    const handleOnChangeText = text => {
+        setInput(text);
     };
 
     const handleOnDropDownItemPress = () => {
-        // make api call to fetch forecast data
+        // make api call to fetch forecast data for given location
     };
 
     return (
