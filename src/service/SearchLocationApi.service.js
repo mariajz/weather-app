@@ -1,23 +1,15 @@
 import { useNavigation } from '@react-navigation/native';
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import GetLocationApi from '../api/weather-api/get-locations/Api';
 import { mockSuccessResponse } from '../api/weather-api/get-locations/mocks';
-import { removePopup, showPopup } from './EventEmitter.service';
 import useLocationSearchApiResponse from '../states/useLocationSearchApiResponse';
 import useSearchLocation from '../states/useSearchLocation';
+import { removePopup, showPopup } from './EventEmitter.service';
 
 const SearchLocationApiService = () => {
     const { setResponse } = useLocationSearchApiResponse();
     const { searchLocation } = useSearchLocation();
     const navigation = useNavigation();
-
-    const queryParams = useMemo(
-        () => ({
-            key: 'key',
-            q: searchLocation,
-        }),
-        [searchLocation],
-    );
 
     const errorPopupProps = {
         title: 'Error',
@@ -36,6 +28,11 @@ const SearchLocationApiService = () => {
                 setResponse(mockSuccessResponse);
                 return;
             }
+
+            const queryParams = {
+                key: 'key',
+                q: searchLocation,
+            };
 
             await new GetLocationApi({
                 queryParams: queryParams,

@@ -16,7 +16,7 @@ describe('Tests for useLocationSearchApiResponse', () => {
     it('should return response and setResponse', async () => {
         const { result } = customRender();
 
-        expect(result.current.response).toStrictEqual({});
+        expect(result.current.response).toStrictEqual([]);
     });
 
     it('should set response to atom', async () => {

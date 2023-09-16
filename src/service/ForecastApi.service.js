@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import CurrentWeatherApi from '../api/weather-api/current-weather/Api';
 import { mockSuccessResponse } from '../api/weather-api/current-weather/mocks/MockSuccessResponse';
 import { showPopup, removePopup } from '../service/EventEmitter.service';
@@ -14,14 +14,11 @@ const ForecastApiService = () => {
     const location = searchLocation || currentLocation;
     const navigation = useNavigation();
 
-    const queryParams = useMemo(
-        () => ({
-            key: 'key',
-            q: location,
-            days: 14,
-        }),
-        [location],
-    );
+    const queryParams = {
+        key: 'key',
+        q: location,
+        days: 14,
+    };
 
     const errorPopupProps = {
         title: 'Error',
@@ -35,6 +32,7 @@ const ForecastApiService = () => {
             });
         },
     };
+
     const ForecastApi = useCallback(
         async ({ isMocked }) => {
             if (isMocked) {
@@ -57,8 +55,9 @@ const ForecastApiService = () => {
                     showPopup(errorPopupProps);
                 });
         },
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        [errorPopupProps, setResponse],
+        [setResponse],
     );
 
     return { ForecastApi };

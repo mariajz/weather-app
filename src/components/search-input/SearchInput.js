@@ -25,7 +25,7 @@ const SearchInput = ({ placeholder }) => {
     const { response } = useLocationSearchApiResponse();
     const [locations, setLocations] = useState([]);
     const { handleFetchLocationData } = useGetAllLocations();
-    const { setSearchLocation } = useSearchLocation();
+    const { searchLocation, setSearchLocation } = useSearchLocation();
     const { handleFetchWeather } = useGetCurrentWeather();
 
     const handleOnSearchIconPress = () => {
@@ -61,10 +61,13 @@ const SearchInput = ({ placeholder }) => {
         setInput(text);
     };
 
+    useEffect(() => {
+        handleFetchWeather();
+    }, [handleFetchWeather, searchLocation]);
+
     const handleOnDropDownItemPress = async ({ lat, lon }) => {
         setSearchLocation(`${lat},${lon}`);
         handleOnBackdropPress();
-        await handleFetchWeather();
     };
 
     return (
