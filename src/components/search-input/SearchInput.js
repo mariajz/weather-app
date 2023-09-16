@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { CustomIcon } from '../../commons/visual-elements';
 import useGetAllLocations from '../../hooks/useGetAllLocations';
+import useGetCurrentWeather from '../../hooks/useGetCurrentWeather';
 import useLocationSearchApiResponse from '../../states/useLocationSearchApiResponse';
+import useSearchLocation from '../../states/useSearchLocation';
 import LocationDetailRow from '../search-city-section/DetailRow';
 import {
     DropDown,
@@ -23,6 +25,8 @@ const SearchInput = ({ placeholder }) => {
     const { response } = useLocationSearchApiResponse();
     const [locations, setLocations] = useState([]);
     const { handleFetchLocationData } = useGetAllLocations();
+    const { setSearchLocation } = useSearchLocation();
+    const { handleFetchWeather } = useGetCurrentWeather();
 
     const handleOnSearchIconPress = () => {
         setSearchIconPressed(!searchIconPressed);
@@ -57,8 +61,9 @@ const SearchInput = ({ placeholder }) => {
         setInput(text);
     };
 
-    const handleOnDropDownItemPress = () => {
-        // make api call to fetch forecast data for given location
+    const handleOnDropDownItemPress = ({ lat, lon }) => {
+        setSearchLocation(`${lat},${lon}`);
+        handleFetchWeather();
     };
 
     return (
@@ -90,9 +95,12 @@ const SearchInput = ({ placeholder }) => {
                                                     return (
                                                         <LocationDetailRow
                                                             index={index}
-                                                            handleOnDropDownItemPress={
-                                                                handleOnDropDownItemPress
+                                                            handleOnDropDownItemPress={() =>
+                                                                handleOnDropDownItemPress(
+                                                                    location,
+                                                                )
                                                             }
+                                                            testID={`item-${index}`}
                                                             location={location}
                                                             key={index}
                                                         />

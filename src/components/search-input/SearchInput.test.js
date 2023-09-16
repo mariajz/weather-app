@@ -16,6 +16,11 @@ jest.mock('../../commons/visual-elements', () => ({
 
 jest.mock('../../states/useLocationSearchApiResponse');
 
+const mockSetSearchLocation = jest.fn();
+jest.mock('../../states/useSearchLocation', () => () => ({
+    setSearchLocation: mockSetSearchLocation,
+}));
+
 jest.mock('../../commons/styles', () => ({
     Divider: () => <MockView />,
 }));
@@ -25,9 +30,46 @@ jest.mock('../../hooks/useGetAllLocations', () => () => ({
     handleFetchLocationData: mockHandleFetchLocationData,
 }));
 
+const mockHandleFetchWeather = jest.fn();
+jest.mock('../../hooks/useGetCurrentWeather', () => () => ({
+    handleFetchWeather: mockHandleFetchWeather,
+}));
+
 jest.mock('react-native-modal', () => ({ children, ...restProps }) => (
     <MockView {...restProps}>{children}</MockView>
 ));
+
+jest.mock('../search-city-section/DetailRow', () => props => (
+    <MockView {...props} />
+));
+
+const renderDropdown = async () => {
+    jest.useFakeTimers();
+
+    useLocationSearchApiResponse.mockImplementation(() => ({
+        response: mockSuccessResponse,
+    }));
+    const container = render(<SearchInput />);
+    const { getByTestId, queryByTestId, debug } = container;
+
+    await act(async () => {
+        getByTestId('search-icon').props.onPress();
+    });
+
+    await act(async () => {
+        fireEvent.press(getByTestId('text-input-wrapper'));
+    });
+
+    await act(async () => {
+        getByTestId('text-input').props.onChangeText('abcd');
+    });
+
+    act(() => {
+        jest.advanceTimersByTime(2000);
+    });
+
+    return { container, getByTestId, queryByTestId, debug };
+};
 
 describe('SearchInput', () => {
     beforeEach(() => {
@@ -77,82 +119,84 @@ describe('SearchInput', () => {
         expect(queryByTestId('modal')).toBeNull();
     });
 
-    it('should not show dropdown when entered input text length <3', async () => {
-        jest.useFakeTimers();
-
-        useLocationSearchApiResponse.mockImplementation(() => ({
-            response: [],
-        }));
-        const container = render(<SearchInput />);
-        const { getByTestId, queryByTestId } = container;
-
-        await act(async () => {
-            getByTestId('search-icon').props.onPress();
+    describe('Tests for dropdown', () => {
+        afterEach(() => {
+            jest.useRealTimers();
+            jest.clearAllMocks();
         });
 
-        await act(async () => {
-            fireEvent.press(getByTestId('text-input-wrapper'));
+        it('should not show dropdown when entered input text length <3', async () => {
+            jest.useFakeTimers();
+
+            useLocationSearchApiResponse.mockImplementation(() => ({
+                response: [],
+            }));
+            const container = render(<SearchInput />);
+            const { getByTestId, queryByTestId } = container;
+
+            await act(async () => {
+                getByTestId('search-icon').props.onPress();
+            });
+
+            await act(async () => {
+                fireEvent.press(getByTestId('text-input-wrapper'));
+            });
+
+            await act(async () => {
+                getByTestId('text-input').props.onChangeText('ab');
+            });
+
+            act(() => {
+                jest.advanceTimersByTime(2000);
+            });
+
+            expect(getByTestId('text-input').props.value).toStrictEqual('ab');
+            expect(mockHandleFetchLocationData).toHaveBeenCalledTimes(0);
+            expect(queryByTestId('dropdown')).toBeNull();
         });
 
-        await act(async () => {
-            getByTestId('text-input').props.onChangeText('ab');
+        it('should show dropdown when entered input text length >3 and collapse the dropdown when length is 0', async () => {
+            const { getByTestId, queryByTestId } = await renderDropdown();
+
+            expect(getByTestId('dropdown')).toBeDefined();
+            expect(mockHandleFetchLocationData).toHaveBeenCalledTimes(1);
+
+            await act(async () => {
+                getByTestId('text-input').props.onChangeText('');
+            });
+
+            useLocationSearchApiResponse.mockImplementation(() => ({
+                response: [],
+            }));
+
+            act(() => {
+                jest.advanceTimersByTime(2000);
+            });
+
+            expect(getByTestId('text-input').props.value).toStrictEqual('');
+            expect(queryByTestId('dropdown')).toBeNull();
         });
 
-        act(() => {
-            jest.advanceTimersByTime(2000);
+        it('should populate the response in dropdown', async () => {
+            const { container, getByTestId } = await renderDropdown();
+
+            expect(getByTestId('dropdown')).toBeDefined();
+
+            expect(container).toMatchSnapshot();
         });
 
-        expect(getByTestId('text-input').props.value).toStrictEqual('ab');
-        expect(mockHandleFetchLocationData).toHaveBeenCalledTimes(0);
-        expect(queryByTestId('dropdown')).toBeNull();
+        it('should set latitude and longitude to searchLocation and call ForecastApi on pressing dropdown item', async () => {
+            const { getByTestId } = await renderDropdown();
 
-        jest.useRealTimers();
-    });
+            expect(getByTestId('dropdown')).toBeDefined();
 
-    it('should show dropdown when entered input text length >3 and collapse the dropdown when length is 0', async () => {
-        jest.useFakeTimers();
+            await act(async () => {
+                getByTestId('item-0').props.handleOnDropDownItemPress();
+            });
 
-        useLocationSearchApiResponse.mockImplementation(() => ({
-            response: mockSuccessResponse,
-        }));
-        const container = render(<SearchInput />);
-        const { getByTestId, queryByTestId } = container;
-
-        await act(async () => {
-            getByTestId('search-icon').props.onPress();
+            expect(mockSetSearchLocation).toHaveBeenCalledTimes(1);
+            expect(mockSetSearchLocation).toHaveBeenCalledWith('9.97,76.23');
+            expect(mockHandleFetchWeather).toHaveBeenCalledTimes(1);
         });
-
-        await act(async () => {
-            fireEvent.press(getByTestId('text-input-wrapper'));
-        });
-
-        await act(async () => {
-            getByTestId('text-input').props.onChangeText('abcd');
-        });
-
-        act(() => {
-            jest.advanceTimersByTime(2000);
-        });
-
-        expect(getByTestId('text-input').props.value).toStrictEqual('abcd');
-        expect(getByTestId('dropdown')).toBeDefined();
-        expect(mockHandleFetchLocationData).toHaveBeenCalledTimes(1);
-
-        await act(async () => {
-            getByTestId('text-input').props.onChangeText('');
-        });
-
-        useLocationSearchApiResponse.mockImplementation(() => ({
-            response: [],
-        }));
-
-        act(() => {
-            jest.advanceTimersByTime(2000);
-        });
-
-        expect(getByTestId('text-input').props.value).toStrictEqual('');
-        expect(queryByTestId('dropdown')).toBeNull();
-
-        jest.useRealTimers();
     });
 });
