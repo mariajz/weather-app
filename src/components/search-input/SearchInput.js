@@ -5,6 +5,7 @@ import useGetAllLocations from '../../hooks/useGetAllLocations';
 import useGetCurrentWeather from '../../hooks/useGetCurrentWeather';
 import useLocationSearchApiResponse from '../../states/useLocationSearchApiResponse';
 import useSearchLocation from '../../states/useSearchLocation';
+import useUserInput from '../../states/useUserInput';
 import LocationDetailRow from '../search-city-section/DetailRow';
 import {
     DropDown,
@@ -26,6 +27,7 @@ const SearchInput = ({ placeholder }) => {
     const [locations, setLocations] = useState([]);
     const { handleFetchLocationData } = useGetAllLocations();
     const { searchLocation, setSearchLocation } = useSearchLocation();
+    const { userInput, setUserInput } = useUserInput();
     const { handleFetchWeather } = useGetCurrentWeather();
 
     const handleOnSearchIconPress = () => {
@@ -39,9 +41,10 @@ const SearchInput = ({ placeholder }) => {
     };
 
     useEffect(() => {
-        if (response.length !== 0) {
+        if (response?.length !== 0) {
             setLocations(response);
         }
+        setShowDropDown(response?.length !== 0);
     }, [response]);
 
     useEffect(() => {
@@ -49,13 +52,12 @@ const SearchInput = ({ placeholder }) => {
             if (input.length === 0) {
                 setShowDropDown(false);
             } else if (input.length > 3) {
-                handleFetchLocationData(input);
-                setShowDropDown(response.length !== 0);
+                setUserInput(input);
             }
         }, 2000);
 
         return () => clearTimeout(timer);
-    }, [handleFetchLocationData, input, response.length]);
+    }, [input, response, setUserInput]);
 
     const handleOnChangeText = text => {
         setInput(text);
@@ -64,6 +66,12 @@ const SearchInput = ({ placeholder }) => {
     useEffect(() => {
         handleFetchWeather();
     }, [handleFetchWeather, searchLocation]);
+
+    useEffect(() => {
+        if (userInput) {
+            handleFetchLocationData(userInput);
+        }
+    }, [handleFetchLocationData, userInput]);
 
     const handleOnDropDownItemPress = async ({ lat, lon }) => {
         setSearchLocation(`${lat},${lon}`);
@@ -93,7 +101,7 @@ const SearchInput = ({ placeholder }) => {
                                 />
                                 <If condition={showDropDown}>
                                     <DropDown testID="dropdown">
-                                        <If condition={locations.length > 0}>
+                                        <If condition={locations?.length > 0}>
                                             {locations.map(
                                                 (location, index) => {
                                                     return (

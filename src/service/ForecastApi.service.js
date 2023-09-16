@@ -57,7 +57,7 @@ const ForecastApiService = () => {
         },
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        [setResponse],
+        [setResponse, searchLocation],
     );
 
     return { ForecastApi };

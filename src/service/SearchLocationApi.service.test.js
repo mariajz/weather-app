@@ -20,8 +20,8 @@ const renderSearchLocationApiService = () =>
 
 console.error = jest.fn();
 
-jest.mock('../states/useSearchLocation', () => () => ({
-    searchLocation: '37.4226711,-122.0849872',
+jest.mock('../states/useUserInput', () => () => ({
+    userInput: 'delhi',
 }));
 
 const mockNavigate = jest.fn();
@@ -55,7 +55,7 @@ describe('Tests for SearchLocationApi.service', () => {
         expect(GetLocationApi).toHaveBeenCalledWith({
             queryParams: {
                 key: 'key',
-                q: '37.4226711,-122.0849872',
+                q: 'delhi',
             },
         });
     });

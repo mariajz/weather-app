@@ -3,12 +3,12 @@ import { useCallback } from 'react';
 import GetLocationApi from '../api/weather-api/get-locations/Api';
 import { mockSuccessResponse } from '../api/weather-api/get-locations/mocks';
 import useLocationSearchApiResponse from '../states/useLocationSearchApiResponse';
-import useSearchLocation from '../states/useSearchLocation';
+import useUserInput from '../states/useUserInput';
 import { removePopup, showPopup } from './EventEmitter.service';
 
 const SearchLocationApiService = () => {
     const { setResponse } = useLocationSearchApiResponse();
-    const { searchLocation } = useSearchLocation();
+    const { userInput } = useUserInput();
     const navigation = useNavigation();
 
     const errorPopupProps = {
@@ -31,7 +31,7 @@ const SearchLocationApiService = () => {
 
             const queryParams = {
                 key: 'key',
-                q: searchLocation,
+                q: userInput,
             };
 
             await new GetLocationApi({
@@ -50,7 +50,7 @@ const SearchLocationApiService = () => {
                 });
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        [errorPopupProps, setResponse],
+        [setResponse, userInput],
     );
 
     return { SearchLocationApi };

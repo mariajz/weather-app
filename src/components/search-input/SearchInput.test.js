@@ -4,6 +4,7 @@ import { View as MockView } from 'react-native';
 import SearchInput from './SearchInput';
 import useLocationSearchApiResponse from '../../states/useLocationSearchApiResponse';
 import { mockSuccessResponse } from '../../api/weather-api/get-locations/mocks';
+import useUserInput from '../../states/useUserInput';
 
 jest.mock('../../commons/visual-elements', () => ({
     CustomIcon: props => <MockView {...props}>Search Icon</MockView>,
@@ -20,6 +21,9 @@ const mockSetSearchLocation = jest.fn();
 jest.mock('../../states/useSearchLocation', () => () => ({
     setSearchLocation: mockSetSearchLocation,
 }));
+
+const mockSetUserInput = jest.fn();
+jest.mock('../../states/useUserInput');
 
 jest.mock('../../commons/styles', () => ({
     Divider: () => <MockView />,
@@ -76,6 +80,10 @@ describe('SearchInput', () => {
         useLocationSearchApiResponse.mockImplementation(() => ({
             response: [],
         }));
+        useUserInput.mockImplementation(() => ({
+            userInput: 'Delhi',
+            setUserInput: mockSetUserInput,
+        }));
     });
     afterEach(() => {
         jest.clearAllMocks();
@@ -127,6 +135,10 @@ describe('SearchInput', () => {
 
         it('should not show dropdown when entered input text length <3', async () => {
             jest.useFakeTimers();
+            useUserInput.mockImplementation(() => ({
+                userInput: undefined,
+                setUserInput: mockSetUserInput,
+            }));
 
             useLocationSearchApiResponse.mockImplementation(() => ({
                 response: [],
@@ -159,6 +171,7 @@ describe('SearchInput', () => {
             const { getByTestId, queryByTestId } = await renderDropdown();
 
             expect(getByTestId('dropdown')).toBeDefined();
+            expect(mockSetUserInput).toHaveBeenCalledTimes(1);
             expect(mockHandleFetchLocationData).toHaveBeenCalledTimes(1);
 
             await act(async () => {
