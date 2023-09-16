@@ -107,7 +107,8 @@ describe('Tests for ForecastApi.service', () => {
         expect(mockSetResponse).toHaveBeenCalledWith(undefined);
         expect(mockShowPopup).toHaveBeenCalledTimes(1);
         expect(mockShowPopup).toHaveBeenCalledWith({
-            description: 'desc',
+            description:
+                'We have encountered an error while fetching weather details',
             onClose: expect.any(Function),
             title: 'Error',
         });

@@ -25,7 +25,8 @@ const ForecastApiService = () => {
 
     const errorPopupProps = {
         title: 'Error',
-        description: 'desc',
+        description:
+            'We have encountered an error while fetching weather details',
         onClose: () => {
             removePopup();
             navigation.navigate({
