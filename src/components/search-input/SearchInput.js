@@ -42,7 +42,6 @@ const SearchInput = ({ placeholder }) => {
         if (response.length !== 0) {
             setLocations(response);
         }
-        setShowDropDown(response.length !== 0);
     }, [response]);
 
     useEffect(() => {
@@ -51,19 +50,21 @@ const SearchInput = ({ placeholder }) => {
                 setShowDropDown(false);
             } else if (input.length > 3) {
                 handleFetchLocationData(input);
+                setShowDropDown(response.length !== 0);
             }
         }, 2000);
 
         return () => clearTimeout(timer);
-    }, [handleFetchLocationData, input]);
+    }, [handleFetchLocationData, input, response.length]);
 
     const handleOnChangeText = text => {
         setInput(text);
     };
 
-    const handleOnDropDownItemPress = ({ lat, lon }) => {
+    const handleOnDropDownItemPress = async ({ lat, lon }) => {
         setSearchLocation(`${lat},${lon}`);
-        handleFetchWeather();
+        handleOnBackdropPress();
+        await handleFetchWeather();
     };
 
     return (
