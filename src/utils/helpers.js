@@ -1,7 +1,9 @@
 import { weatherImages, UVWarnings } from '../constants';
 
 const fetchWeatherImage = weatherType => {
-    return weatherImages[weatherType];
+    return weatherImages[weatherType]
+        ? weatherImages[weatherType]
+        : weatherImages.other;
 };
 
 const filterForecastDataFromCurrentHour = (forecastData, currentHour) => {

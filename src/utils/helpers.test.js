@@ -32,6 +32,14 @@ describe('Helpers', () => {
         });
     });
 
+    it('should return default image when api response weather image isnt available', () => {
+        const result = fetchWeatherImage('Some random weather');
+
+        expect(result).toStrictEqual({
+            testUri: '../../../assets/images/line.png',
+        });
+    });
+
     it('should filterHourFromTimestamp', () => {
         const result = filterHourFromTimestamp('2023-08-14 16:00');
 

@@ -15,5 +15,5 @@ export const images = {
     ModerateOrHeavyRainShower: require('./heavyrain.png'),
     ModerateOrHeavyRainWithThunder: require('./heavyrain.png'),
     Mist: require('./mist.png'),
-    other: require('./moderaterain.png'),
+    other: require('./line.png'),
 };
