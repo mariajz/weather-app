@@ -19,6 +19,12 @@ describe('Tests for useLocationSearchApiResponse', () => {
         expect(result.current.response).toStrictEqual(undefined);
     });
 
+    it('should return error and setError', async () => {
+        const { result } = customRender();
+
+        expect(result.current.error).toStrictEqual(undefined);
+    });
+
     it('should set response to atom', async () => {
         const { result } = customRender();
 
@@ -27,5 +33,15 @@ describe('Tests for useLocationSearchApiResponse', () => {
         });
 
         expect(result.current.response).toStrictEqual({ key: 'value' });
+    });
+
+    it('should set error to atom', async () => {
+        const { result } = customRender();
+
+        await act(async () => {
+            await result.current.setError('error');
+        });
+
+        expect(result.current.error).toStrictEqual('error');
     });
 });

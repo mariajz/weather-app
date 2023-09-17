@@ -3,10 +3,10 @@
 exports[`App should render the app 1`] = `
 <View>
   <View>
-     Navigation service
+    Global Events
   </View>
   <View>
-    Global Events
+     Navigation service
   </View>
 </View>
 `;

@@ -72,10 +72,14 @@ const renderDropdown = async () => {
     return { container, getByTestId, queryByTestId, debug };
 };
 
+const mockSetError = jest.fn();
+
 describe('SearchInput', () => {
     beforeEach(() => {
         useLocationSearchApiResponse.mockImplementation(() => ({
             response: undefined,
+            error: undefined,
+            setError: mockSetError,
         }));
         useUserInput.mockImplementation(() => ({
             userInput: 'Delhi',
@@ -128,6 +132,8 @@ describe('SearchInput', () => {
         beforeEach(() => {
             useLocationSearchApiResponse.mockImplementation(() => ({
                 response: mockSuccessResponse,
+                error: false,
+                setError: mockSetError,
             }));
         });
         afterEach(() => {
@@ -144,6 +150,8 @@ describe('SearchInput', () => {
 
             useLocationSearchApiResponse.mockImplementation(() => ({
                 response: undefined,
+                error: undefined,
+                setError: mockSetError,
             }));
             const container = render(<SearchInput />);
             const { getByTestId, queryByTestId } = container;
@@ -182,6 +190,8 @@ describe('SearchInput', () => {
 
             useLocationSearchApiResponse.mockImplementation(() => ({
                 response: undefined,
+                error: undefined,
+                setError: mockSetError,
             }));
 
             act(() => {
@@ -203,11 +213,25 @@ describe('SearchInput', () => {
         it('should not populate the response in dropdown and show unavailable message when response is empty', async () => {
             useLocationSearchApiResponse.mockImplementation(() => ({
                 response: [],
+                error: undefined,
+                setError: mockSetError,
             }));
             const { container, getByTestId } = await renderDropdown();
 
             expect(getByTestId('dropdown')).toBeDefined();
             expect(getByTestId('item-unavailable')).toBeDefined();
+
+            expect(container).toMatchSnapshot();
+        });
+
+        it('should collapse the dropdown and text input when error is true and popup is shown', async () => {
+            useLocationSearchApiResponse.mockImplementation(() => ({
+                response: undefined,
+                error: true,
+                setError: mockSetError,
+            }));
+
+            const container = render(<SearchInput />);
 
             expect(container).toMatchSnapshot();
         });

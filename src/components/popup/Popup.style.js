@@ -6,6 +6,8 @@ export const ContentWrapper = styled.View`
     padding: 10px;
     border-radius: 10px;
     flex-direction: row;
+    flex: 1;
+    max-height: 100px;
     justify-content: space-between;
 `;
 

@@ -1,5 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`SearchInput Tests for dropdown should collapse the dropdown and text input when error is true and popup is shown 1`] = `
+<View
+  style={
+    {
+      "height": "8%",
+    }
+  }
+>
+  <View
+    style={
+      {
+        "backgroundColor": "mocked rgba(255, 255, 255, 0.5)",
+        "borderBottomLeftRadius": 20,
+        "borderBottomRightRadius": 20,
+        "borderTopLeftRadius": 20,
+        "borderTopRightRadius": 20,
+        "height": 40,
+        "marginTop": 10,
+        "paddingBottom": 7,
+        "paddingLeft": 7,
+        "paddingRight": 7,
+        "paddingTop": 7,
+        "position": "absolute",
+        "right": 12,
+        "width": 40,
+      }
+    }
+  >
+    <View
+      iconName="search"
+      onPress={[Function]}
+      testID="search-icon"
+      tintColor="black"
+    >
+      Search Icon
+    </View>
+  </View>
+</View>
+`;
+
 exports[`SearchInput Tests for dropdown should not populate the response in dropdown and show unavailable message when response is empty 1`] = `
 <View
   style={

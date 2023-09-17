@@ -18,7 +18,7 @@ jest.mock('../states/useForcastApiResponse', () => () => ({
 const renderForecastApiService = () => renderHook(() => ForecastApiService());
 
 // eslint-disable-next-line no-console
-console.error = jest.fn();
+console.log = jest.fn();
 
 jest.mock('../states/useCurrentLocation', () => () => ({
     currentLocation: '37.4226711,-122.0849872',
@@ -90,7 +90,7 @@ describe('Tests for ForecastApi.service', () => {
     });
 
     it('should set response as undefined and show error popup when api call fails', async () => {
-        const consoleErrorSpy = jest.spyOn(console, 'error');
+        const consoleLogSpy = jest.spyOn(console, 'log');
         const { result } = renderForecastApiService();
         const error = new Error('Error in fetching forecast data');
         mockCall.mockRejectedValueOnce(error);
@@ -99,8 +99,8 @@ describe('Tests for ForecastApi.service', () => {
             await result.current.ForecastApi({ isMocked: false });
         });
 
-        expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
-        expect(consoleErrorSpy).toHaveBeenCalledWith(
+        expect(consoleLogSpy).toHaveBeenCalledTimes(1);
+        expect(consoleLogSpy).toHaveBeenCalledWith(
             'Error in fetching forecast data:',
             error,
         );

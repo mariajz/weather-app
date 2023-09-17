@@ -11,25 +11,20 @@ jest.mock('../api/weather-api/get-locations/Api', () => {
 });
 
 const mockSetResponse = jest.fn();
+const mockSetError = jest.fn();
 jest.mock('../states/useLocationSearchApiResponse', () => () => ({
     setResponse: mockSetResponse,
+    setError: mockSetError,
 }));
 
 const renderSearchLocationApiService = () =>
     renderHook(() => SearchLocationApi());
 
 // eslint-disable-next-line no-console
-console.error = jest.fn();
+console.log = jest.fn();
 
 jest.mock('../states/useUserInput', () => () => ({
     userInput: 'delhi',
-}));
-
-const mockNavigate = jest.fn();
-jest.mock('@react-navigation/native', () => ({
-    useNavigation: () => ({
-        navigate: mockNavigate,
-    }),
 }));
 
 const mockShowPopup = jest.fn();
@@ -61,7 +56,7 @@ describe('Tests for SearchLocationApi.service', () => {
         });
     });
 
-    it('should set api response to response when api call is success', async () => {
+    it('should set api response to response and set error as false when api call is success', async () => {
         const { result } = renderSearchLocationApiService();
         mockCall.mockResolvedValueOnce(mockSuccessResponse);
 
@@ -71,10 +66,12 @@ describe('Tests for SearchLocationApi.service', () => {
 
         expect(mockSetResponse).toHaveBeenCalledTimes(1);
         expect(mockSetResponse).toHaveBeenCalledWith(mockSuccessResponse);
+        expect(mockSetError).toBeCalledTimes(1);
+        expect(mockSetError).toHaveBeenCalledWith(false);
     });
 
-    it('should set response as undefined and show error popup when api call fails', async () => {
-        const consoleErrorSpy = jest.spyOn(console, 'error');
+    it('should set response as undefined , set error as true and show error popup when api call fails', async () => {
+        const consoleLogSpy = jest.spyOn(console, 'log');
         const { result } = renderSearchLocationApiService();
         const error = new Error('Error in fetching locations data');
         mockCall.mockRejectedValueOnce(error);
@@ -83,8 +80,8 @@ describe('Tests for SearchLocationApi.service', () => {
             await result.current.SearchLocationApi({ isMocked: false });
         });
 
-        expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
-        expect(consoleErrorSpy).toHaveBeenCalledWith(
+        expect(consoleLogSpy).toHaveBeenCalledTimes(1);
+        expect(consoleLogSpy).toHaveBeenCalledWith(
             'Error in fetching locations data:',
             error,
         );
@@ -96,15 +93,12 @@ describe('Tests for SearchLocationApi.service', () => {
             onClose: expect.any(Function),
             title: 'Error',
         });
+        expect(mockSetError).toBeCalledTimes(1);
+        expect(mockSetError).toHaveBeenCalledWith(true);
 
         mockShowPopup.mock.calls[0][0].onClose();
 
         expect(mockRemovePopup).toHaveBeenCalledTimes(1);
-        expect(mockNavigate).toHaveBeenCalledTimes(1);
-        expect(mockNavigate).toHaveBeenLastCalledWith({
-            name: 'ExitScreen',
-            params: {},
-        });
     });
 });
 

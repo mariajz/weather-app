@@ -6,8 +6,8 @@ import GlobalEvents from '../components/global-events';
 const App = () => {
     return (
         <AppWrapper>
-            <NavigationService />
             <GlobalEvents />
+            <NavigationService />
         </AppWrapper>
     );
 };

@@ -23,7 +23,7 @@ const SearchInput = ({ placeholder }) => {
     const [showModal, setShowModal] = useState(true);
     const [input, setInput] = useState('');
     const [searchIconPressed, setSearchIconPressed] = useState(false);
-    const { response } = useLocationSearchApiResponse();
+    const { response, error, setError } = useLocationSearchApiResponse();
     const [locations, setLocations] = useState([]);
     const { handleFetchLocationData } = useGetAllLocations();
     const { searchLocation, setSearchLocation } = useSearchLocation();
@@ -31,13 +31,16 @@ const SearchInput = ({ placeholder }) => {
     const { handleFetchWeather } = useGetCurrentWeather();
 
     const handleOnSearchIconPress = () => {
-        setSearchIconPressed(!searchIconPressed);
+        setSearchIconPressed(true);
         setShowModal(true);
+        setError(false);
     };
+
     const handleOnBackdropPress = () => {
         setShowDropDown(false);
         setShowModal(false);
-        setSearchIconPressed(!searchIconPressed);
+        setSearchIconPressed(false);
+        setLocations([]);
     };
 
     useEffect(() => {
@@ -64,6 +67,12 @@ const SearchInput = ({ placeholder }) => {
     };
 
     useEffect(() => {
+        if (error) {
+            setSearchIconPressed(false);
+        }
+    }, [error]);
+
+    useEffect(() => {
         handleFetchWeather();
     }, [handleFetchWeather, searchLocation]);
 
@@ -78,6 +87,43 @@ const SearchInput = ({ placeholder }) => {
         handleOnBackdropPress();
     };
 
+    const ModalContent = (
+        <>
+            <StyledTextInput
+                placeholder={placeholder}
+                placeholderTextColor="black"
+                onChangeText={handleOnChangeText}
+                value={input}
+                testID="text-input"
+            />
+            <If condition={showDropDown}>
+                <DropDown testID="dropdown">
+                    <If condition={locations?.length > 0}>
+                        {locations.map((location, index) => {
+                            return (
+                                <LocationDetailRow
+                                    index={index}
+                                    locationAvailable
+                                    handleOnDropDownItemPress={() =>
+                                        handleOnDropDownItemPress(location)
+                                    }
+                                    testID={`item-${index}`}
+                                    location={location}
+                                    key={index}
+                                />
+                            );
+                        })}
+                        <Else />
+                        <LocationDetailRow
+                            testID="item-unavailable"
+                            locationAvailable={false}
+                        />
+                    </If>
+                </DropDown>
+            </If>
+        </>
+    );
+
     return (
         <SearchInputWrapper>
             <If condition={searchIconPressed}>
@@ -88,47 +134,14 @@ const SearchInput = ({ placeholder }) => {
                             setShowModal(true);
                         }}>
                         <View>
-                            <StyledModal
-                                visible={showModal}
-                                testID="modal"
-                                onBackdropPress={handleOnBackdropPress}>
-                                <StyledTextInput
-                                    placeholder={placeholder}
-                                    placeholderTextColor="black"
-                                    onChangeText={handleOnChangeText}
-                                    value={input}
-                                    testID="text-input"
-                                />
-                                <If condition={showDropDown}>
-                                    <DropDown testID="dropdown">
-                                        <If condition={locations?.length > 0}>
-                                            {locations.map(
-                                                (location, index) => {
-                                                    return (
-                                                        <LocationDetailRow
-                                                            index={index}
-                                                            locationAvailable
-                                                            handleOnDropDownItemPress={() =>
-                                                                handleOnDropDownItemPress(
-                                                                    location,
-                                                                )
-                                                            }
-                                                            testID={`item-${index}`}
-                                                            location={location}
-                                                            key={index}
-                                                        />
-                                                    );
-                                                },
-                                            )}
-                                            <Else />
-                                            <LocationDetailRow
-                                                testID="item-unavailable"
-                                                locationAvailable={false}
-                                            />
-                                        </If>
-                                    </DropDown>
-                                </If>
-                            </StyledModal>
+                            <If condition={!error}>
+                                <StyledModal
+                                    visible={showModal}
+                                    testID="modal"
+                                    onBackdropPress={handleOnBackdropPress}>
+                                    {ModalContent}
+                                </StyledModal>
+                            </If>
                         </View>
                     </StyledTouchableOpacity>
                 </ModalWrapper>
