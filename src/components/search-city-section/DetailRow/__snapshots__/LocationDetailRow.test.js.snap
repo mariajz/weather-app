@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LocationDetailRow should render LocationDetailRow 1`] = `
+exports[`LocationDetailRow should render LocationDetailRow when locationAvailable is true 1`] = `
 [
   <View
     accessibilityState={
@@ -64,4 +64,36 @@ exports[`LocationDetailRow should render LocationDetailRow 1`] = `
     Divider
   </View>,
 ]
+`;
+
+exports[`LocationDetailRow should render LocationUnavailableRow when locationAvailable is false 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "flexDirection": "row",
+      "height": 50,
+      "marginLeft": 10,
+      "width": 300,
+    }
+  }
+  testID="unavailable-row"
+>
+  <View
+    iconName="unavailable"
+    size={16}
+    tintColor="red"
+  >
+    Search Icon
+  </View>
+  <Text
+    style={
+      {
+        "marginLeft": 5,
+      }
+    }
+  >
+    Weather details unavailable for entered location. Please try another closer location.
+  </Text>
+</View>
 `;

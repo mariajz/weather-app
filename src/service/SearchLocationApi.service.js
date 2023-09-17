@@ -39,9 +39,7 @@ const SearchLocationApiService = () => {
             })
                 .call()
                 .then(response => {
-                    if (Object.keys(response).length !== 0) {
-                        setResponse(response);
-                    }
+                    setResponse(response);
                 })
                 .catch(error => {
                     console.error('Error in fetching locations data:', error);

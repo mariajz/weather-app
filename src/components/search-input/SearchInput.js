@@ -44,7 +44,7 @@ const SearchInput = ({ placeholder }) => {
         if (response?.length !== 0) {
             setLocations(response);
         }
-        setShowDropDown(response?.length !== 0);
+        setShowDropDown(response !== undefined);
     }, [response]);
 
     useEffect(() => {
@@ -107,6 +107,7 @@ const SearchInput = ({ placeholder }) => {
                                                     return (
                                                         <LocationDetailRow
                                                             index={index}
+                                                            locationAvailable
                                                             handleOnDropDownItemPress={() =>
                                                                 handleOnDropDownItemPress(
                                                                     location,
@@ -119,6 +120,11 @@ const SearchInput = ({ placeholder }) => {
                                                     );
                                                 },
                                             )}
+                                            <Else />
+                                            <LocationDetailRow
+                                                testID="item-unavailable"
+                                                locationAvailable={false}
+                                            />
                                         </If>
                                     </DropDown>
                                 </If>

@@ -50,9 +50,6 @@ jest.mock('../search-city-section/DetailRow', () => props => (
 const renderDropdown = async () => {
     jest.useFakeTimers();
 
-    useLocationSearchApiResponse.mockImplementation(() => ({
-        response: mockSuccessResponse,
-    }));
     const container = render(<SearchInput />);
     const { getByTestId, queryByTestId, debug } = container;
 
@@ -78,7 +75,7 @@ const renderDropdown = async () => {
 describe('SearchInput', () => {
     beforeEach(() => {
         useLocationSearchApiResponse.mockImplementation(() => ({
-            response: [],
+            response: undefined,
         }));
         useUserInput.mockImplementation(() => ({
             userInput: 'Delhi',
@@ -128,6 +125,11 @@ describe('SearchInput', () => {
     });
 
     describe('Tests for dropdown', () => {
+        beforeEach(() => {
+            useLocationSearchApiResponse.mockImplementation(() => ({
+                response: mockSuccessResponse,
+            }));
+        });
         afterEach(() => {
             jest.useRealTimers();
             jest.clearAllMocks();
@@ -141,7 +143,7 @@ describe('SearchInput', () => {
             }));
 
             useLocationSearchApiResponse.mockImplementation(() => ({
-                response: [],
+                response: undefined,
             }));
             const container = render(<SearchInput />);
             const { getByTestId, queryByTestId } = container;
@@ -179,7 +181,7 @@ describe('SearchInput', () => {
             });
 
             useLocationSearchApiResponse.mockImplementation(() => ({
-                response: [],
+                response: undefined,
             }));
 
             act(() => {
@@ -190,10 +192,22 @@ describe('SearchInput', () => {
             expect(queryByTestId('dropdown')).toBeNull();
         });
 
-        it('should populate the response in dropdown', async () => {
+        it('should populate the response in dropdown when response is not undefined', async () => {
             const { container, getByTestId } = await renderDropdown();
 
             expect(getByTestId('dropdown')).toBeDefined();
+
+            expect(container).toMatchSnapshot();
+        });
+
+        it('should not populate the response in dropdown and show unavailable message when response is empty', async () => {
+            useLocationSearchApiResponse.mockImplementation(() => ({
+                response: [],
+            }));
+            const { container, getByTestId } = await renderDropdown();
+
+            expect(getByTestId('dropdown')).toBeDefined();
+            expect(getByTestId('item-unavailable')).toBeDefined();
 
             expect(container).toMatchSnapshot();
         });

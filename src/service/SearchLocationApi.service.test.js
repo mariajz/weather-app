@@ -60,7 +60,7 @@ describe('Tests for SearchLocationApi.service', () => {
         });
     });
 
-    it('should set api response to response when api call is success and response isnt empty', async () => {
+    it('should set api response to response when api call is success', async () => {
         const { result } = renderSearchLocationApiService();
         mockCall.mockResolvedValueOnce(mockSuccessResponse);
 
@@ -70,17 +70,6 @@ describe('Tests for SearchLocationApi.service', () => {
 
         expect(mockSetResponse).toHaveBeenCalledTimes(1);
         expect(mockSetResponse).toHaveBeenCalledWith(mockSuccessResponse);
-    });
-
-    it('should not set api response to response when api call is success but response is empty', async () => {
-        const { result } = renderSearchLocationApiService();
-        mockCall.mockResolvedValueOnce({});
-
-        await act(async () => {
-            await result.current.SearchLocationApi({ isMocked: false });
-        });
-
-        expect(mockSetResponse).toHaveBeenCalledTimes(0);
     });
 
     it('should set response as undefined and show error popup when api call fails', async () => {

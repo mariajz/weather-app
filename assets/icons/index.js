@@ -10,4 +10,5 @@ export const icons = {
     close: require('./close-thin.png'),
     closeThick: require('./close-thick.png'),
     pin: require('./pin.png'),
+    unavailable: require('./unavailable.png'),
 };

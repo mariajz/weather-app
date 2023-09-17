@@ -1,6 +1,6 @@
 import { atom, useAtom } from 'jotai';
 
-const locationSearchApiResponseAtom = atom([]);
+const locationSearchApiResponseAtom = atom(undefined);
 
 const useLocationSearchApiResponse = () => {
     const [response, setResponse] = useAtom(locationSearchApiResponseAtom);

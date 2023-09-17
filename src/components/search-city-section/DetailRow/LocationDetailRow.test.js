@@ -14,11 +14,12 @@ jest.mock('../../../commons/styles', () => ({
 const mockHandleOnDropDownItemPress = jest.fn();
 const defaultProps = {
     location: { country: 'India', key: 5, name: 'Delhi' },
+    locationAvailable: true,
     handleOnDropDownItemPress: mockHandleOnDropDownItemPress,
 };
 
 describe('LocationDetailRow', () => {
-    it('should render LocationDetailRow', () => {
+    it('should render LocationDetailRow when locationAvailable is true', () => {
         const container = render(<LocationDetailRow {...defaultProps} />);
         const { getByTestId } = container;
 
@@ -27,5 +28,16 @@ describe('LocationDetailRow', () => {
         fireEvent.press(getByTestId('row'));
 
         expect(mockHandleOnDropDownItemPress).toHaveBeenCalledTimes(1);
+    });
+
+    it('should render LocationUnavailableRow when locationAvailable is false', () => {
+        const modifiedProps = {
+            locationAvailable: false,
+        };
+        const container = render(<LocationDetailRow {...modifiedProps} />);
+        const { getByTestId } = container;
+
+        expect(getByTestId('unavailable-row')).toBeDefined();
+        expect(container).toMatchSnapshot();
     });
 });

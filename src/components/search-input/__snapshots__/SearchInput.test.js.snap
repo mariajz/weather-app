@@ -1,6 +1,153 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SearchInput Tests for dropdown should populate the response in dropdown 1`] = `
+exports[`SearchInput Tests for dropdown should not populate the response in dropdown and show unavailable message when response is empty 1`] = `
+<View
+  style={
+    {
+      "height": "8%",
+    }
+  }
+>
+  <View
+    style={
+      {
+        "backgroundColor": "mocked rgba(255, 255, 255, 0.2)",
+        "borderBottomLeftRadius": 20,
+        "borderBottomRightRadius": 20,
+        "borderTopLeftRadius": 20,
+        "borderTopRightRadius": 20,
+        "height": 40,
+        "marginBottom": 10,
+        "marginLeft": 10,
+        "marginRight": 10,
+        "marginTop": 10,
+      }
+    }
+  >
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "height": "100%",
+          "opacity": 1,
+          "width": "100%",
+        }
+      }
+      testID="text-input-wrapper"
+    >
+      <View>
+        <View
+          onBackdropPress={[Function]}
+          style={
+            {
+              "position": "absolute",
+              "top": 48,
+              "width": "85%",
+            }
+          }
+          testID="modal"
+          visible={true}
+        >
+          <TextInput
+            onChangeText={[Function]}
+            placeholderTextColor="black"
+            style={
+              {
+                "paddingLeft": 10,
+              }
+            }
+            testID="text-input"
+            value="abcd"
+          />
+          <View
+            style={
+              {
+                "backgroundColor": "white",
+                "borderBottomLeftRadius": 10,
+                "borderBottomRightRadius": 10,
+                "borderTopLeftRadius": 10,
+                "borderTopRightRadius": 10,
+                "marginTop": 15,
+              }
+            }
+            testID="dropdown"
+          >
+            <View
+              locationAvailable={false}
+              testID="item-unavailable"
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      {
+        "backgroundColor": "mocked rgba(255, 255, 255, 0.5)",
+        "borderBottomLeftRadius": 20,
+        "borderBottomRightRadius": 20,
+        "borderTopLeftRadius": 20,
+        "borderTopRightRadius": 20,
+        "height": 40,
+        "marginTop": 10,
+        "paddingBottom": 7,
+        "paddingLeft": 7,
+        "paddingRight": 7,
+        "paddingTop": 7,
+        "position": "absolute",
+        "right": 12,
+        "width": 40,
+      }
+    }
+  >
+    <View
+      iconName="close"
+      onPress={[Function]}
+      size="14"
+      style={
+        {
+          "marginBottom": 6,
+          "marginLeft": 6,
+          "marginRight": 6,
+          "marginTop": 6,
+        }
+      }
+      tintColor="black"
+    >
+      Search Icon
+    </View>
+  </View>
+</View>
+`;
+
+exports[`SearchInput Tests for dropdown should populate the response in dropdown when response is not undefined 1`] = `
 <View
   style={
     {
@@ -112,6 +259,7 @@ exports[`SearchInput Tests for dropdown should populate the response in dropdown
                   "url": "kochi-kerala-india",
                 }
               }
+              locationAvailable={true}
               testID="item-0"
             />
             <View
@@ -128,6 +276,7 @@ exports[`SearchInput Tests for dropdown should populate the response in dropdown
                   "url": "kochi-shi-kochi-japan",
                 }
               }
+              locationAvailable={true}
               testID="item-1"
             />
             <View
@@ -144,6 +293,7 @@ exports[`SearchInput Tests for dropdown should populate the response in dropdown
                   "url": "kochinda-orissa-india",
                 }
               }
+              locationAvailable={true}
               testID="item-2"
             />
           </View>
