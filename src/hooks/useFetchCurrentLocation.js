@@ -16,6 +16,7 @@ const useFetchCurrentLocation = () => {
                         );
                     },
                     error => {
+                        // eslint-disable-next-line no-console
                         console.log(error.code, error.message);
                         setCurrentLocation('unavailable');
                     },
@@ -27,6 +28,7 @@ const useFetchCurrentLocation = () => {
                 );
             }
         } else {
+            // eslint-disable-next-line no-console
             console.log('permission denied for location');
         }
     }, [currentLocation, locationPermission, setCurrentLocation]);

@@ -17,6 +17,7 @@ jest.mock('../states/useForcastApiResponse', () => () => ({
 
 const renderForecastApiService = () => renderHook(() => ForecastApiService());
 
+// eslint-disable-next-line no-console
 console.error = jest.fn();
 
 jest.mock('../states/useCurrentLocation', () => () => ({

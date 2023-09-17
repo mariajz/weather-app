@@ -10,5 +10,6 @@ module.exports = {
     rules: {
         'prettier/prettier': 0,
         'react/jsx-no-undef': ['error', { allowGlobals: true }],
+        'no-console': 'error',
     },
 };

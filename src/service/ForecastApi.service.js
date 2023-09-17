@@ -50,6 +50,7 @@ const ForecastApiService = () => {
                     }
                 })
                 .catch(error => {
+                    // eslint-disable-next-line no-console
                     console.error('Error in fetching forecast data:', error);
                     setResponse(undefined);
                     showPopup(errorPopupProps);

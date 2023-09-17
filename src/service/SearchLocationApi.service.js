@@ -42,6 +42,7 @@ const SearchLocationApiService = () => {
                     setResponse(response);
                 })
                 .catch(error => {
+                    // eslint-disable-next-line no-console
                     console.error('Error in fetching locations data:', error);
                     setResponse(undefined);
                     showPopup(errorPopupProps);

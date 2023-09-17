@@ -18,6 +18,7 @@ jest.mock('../states/useLocationSearchApiResponse', () => () => ({
 const renderSearchLocationApiService = () =>
     renderHook(() => SearchLocationApi());
 
+// eslint-disable-next-line no-console
 console.error = jest.fn();
 
 jest.mock('../states/useUserInput', () => () => ({

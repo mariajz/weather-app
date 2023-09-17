@@ -19,6 +19,7 @@ const testableFiles = changedFiles.filter(file => {
 });
 let jestCommand;
 if (testableFiles.length === 0) {
+    // eslint-disable-next-line no-console
     console.log('No testable files found. Passing with no tests');
 } else {
     jestCommand = `jest ${testableFiles.join(' ')}`;
