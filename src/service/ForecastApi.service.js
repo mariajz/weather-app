@@ -6,6 +6,7 @@ import { showPopup, removePopup } from '../service/EventEmitter.service';
 import useCurrentLocation from '../states/useCurrentLocation';
 import useSearchLocation from '../states/useSearchLocation';
 import useForcastApiResponse from '../states/useForcastApiResponse';
+import Config from '../Config';
 
 const ForecastApiService = () => {
     const { setResponse } = useForcastApiResponse();
@@ -15,7 +16,7 @@ const ForecastApiService = () => {
     const navigation = useNavigation();
 
     const queryParams = {
-        key: 'key',
+        key: Config.WEATHER_API_KEY,
         q: location,
         days: 14,
     };

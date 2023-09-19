@@ -23,6 +23,10 @@ const renderSearchLocationApiService = () =>
 // eslint-disable-next-line no-console
 console.log = jest.fn();
 
+jest.mock('../Config', () => ({
+    WEATHER_API_KEY: 'key',
+}));
+
 jest.mock('../states/useUserInput', () => () => ({
     userInput: 'delhi',
 }));

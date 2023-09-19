@@ -4,6 +4,7 @@ import { mockSuccessResponse } from '../api/weather-api/get-locations/mocks';
 import useLocationSearchApiResponse from '../states/useLocationSearchApiResponse';
 import useUserInput from '../states/useUserInput';
 import { removePopup, showPopup } from './EventEmitter.service';
+import Config from '../Config';
 
 const SearchLocationApiService = () => {
     const { setResponse, setError } = useLocationSearchApiResponse();
@@ -24,7 +25,7 @@ const SearchLocationApiService = () => {
             }
 
             const queryParams = {
-                key: 'key',
+                key: Config.WEATHER_API_KEY,
                 q: userInput,
             };
 

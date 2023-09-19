@@ -15,6 +15,10 @@ jest.mock('../states/useForcastApiResponse', () => () => ({
     setResponse: mockSetResponse,
 }));
 
+jest.mock('../Config', () => ({
+    WEATHER_API_KEY: 'key',
+}));
+
 const renderForecastApiService = () => renderHook(() => ForecastApiService());
 
 // eslint-disable-next-line no-console
