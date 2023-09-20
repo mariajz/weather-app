@@ -23,7 +23,7 @@ describe('Tests for useGetAllLocations', () => {
 
         expect(mockSearchLocationApi).toHaveBeenCalledTimes(1);
         expect(mockSearchLocationApi).toHaveBeenCalledWith({
-            isMocked: true,
+            isMocked: false,
         });
     });
 });

@@ -5,8 +5,8 @@ const useGetAllLocations = () => {
     const { SearchLocationApi } = SearchLocationApiService();
 
     const handleFetchLocationData = useCallback(async () => {
-        // change isMocked to false to call actual api
-        await SearchLocationApi({ isMocked: true });
+        // change isMocked to true to call mock api
+        await SearchLocationApi({ isMocked: false });
     }, [SearchLocationApi]);
 
     return { handleFetchLocationData };

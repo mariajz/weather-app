@@ -5,8 +5,8 @@ const useGetCurrentWeather = () => {
     const { ForecastApi } = ForecastApiService();
 
     const handleFetchWeather = useCallback(async () => {
-        // change isMocked to false to call actual api
-        await ForecastApi({ isMocked: true });
+        // change isMocked to true to call mock api
+        await ForecastApi({ isMocked: false });
     }, [ForecastApi]);
 
     return { handleFetchWeather };

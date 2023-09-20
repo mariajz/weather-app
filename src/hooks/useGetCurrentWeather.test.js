@@ -22,6 +22,6 @@ describe('Tests for useGetCurrentWeather', () => {
         });
 
         expect(mockForecastApi).toHaveBeenCalledTimes(1);
-        expect(mockForecastApi).toHaveBeenCalledWith({ isMocked: true });
+        expect(mockForecastApi).toHaveBeenCalledWith({ isMocked: false });
     });
 });
