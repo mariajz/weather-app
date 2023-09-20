@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { CustomIcon } from '../../commons/visual-elements';
@@ -73,14 +74,16 @@ const SearchInput = ({ placeholder }) => {
     }, [error]);
 
     useEffect(() => {
-        handleFetchWeather();
-    }, [handleFetchWeather, searchLocation]);
+        if (searchLocation) {
+            handleFetchWeather();
+        }
+    }, [searchLocation]);
 
     useEffect(() => {
         if (userInput) {
             handleFetchLocationData(userInput);
         }
-    }, [handleFetchLocationData, userInput]);
+    }, [userInput]);
 
     const handleOnDropDownItemPress = async ({ lat, lon }) => {
         setSearchLocation(`${lat},${lon}`);

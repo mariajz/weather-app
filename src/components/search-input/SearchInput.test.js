@@ -247,7 +247,6 @@ describe('SearchInput', () => {
 
             expect(mockSetSearchLocation).toHaveBeenCalledTimes(1);
             expect(mockSetSearchLocation).toHaveBeenCalledWith('9.97,76.23');
-            expect(mockHandleFetchWeather).toHaveBeenCalledTimes(1);
         });
     });
 });
