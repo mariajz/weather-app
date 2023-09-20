@@ -22,7 +22,7 @@ exports[`ForecastSection should render ForecastSection 1`] = `
         Weather Deatils 
       </View>
       <View>
-        Hourly Forcast
+        Hourly Forecast
       </View>
       <View>
         Weekly Forecast Scroll

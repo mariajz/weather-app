@@ -5,11 +5,11 @@ import { mockSuccessResponse } from '../api/weather-api/current-weather/mocks/Mo
 import { showPopup, removePopup } from '../service/EventEmitter.service';
 import useCurrentLocation from '../states/useCurrentLocation';
 import useSearchLocation from '../states/useSearchLocation';
-import useForcastApiResponse from '../states/useForcastApiResponse';
+import useForecastApiResponse from '../states/useForecastApiResponse';
 import Config from '../Config';
 
 const ForecastApiService = () => {
-    const { setResponse } = useForcastApiResponse();
+    const { setResponse } = useForecastApiResponse();
     const { currentLocation } = useCurrentLocation();
     const { searchLocation } = useSearchLocation();
     const location = searchLocation || currentLocation;

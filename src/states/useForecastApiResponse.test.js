@@ -1,14 +1,14 @@
 import { act, renderHook } from '@testing-library/react-hooks';
 import { Provider } from 'jotai';
 import React from 'react';
-import useForcastApiResponse from './useForcastApiResponse';
+import useForecastApiResponse from './useForecastApiResponse';
 
 const wrapper = ({ children }) => <Provider>{children}</Provider>;
 
 const customRender = () =>
-    renderHook(() => useForcastApiResponse(), { wrapper });
+    renderHook(() => useForecastApiResponse(), { wrapper });
 
-describe('Tests for useForcastApiResponse', () => {
+describe('Tests for useForecastApiResponse', () => {
     afterEach(() => {
         jest.clearAllMocks();
     });

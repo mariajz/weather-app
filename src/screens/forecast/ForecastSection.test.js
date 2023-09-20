@@ -8,7 +8,7 @@ jest.mock('../../components/hourly-forecast', () => {
     return {
         __esModule: true,
         default: () => {
-            return <MockView>Hourly Forcast</MockView>;
+            return <MockView>Hourly Forecast</MockView>;
         },
     };
 });
@@ -71,7 +71,7 @@ jest.mock('../../states/useCurrentDay', () => () => ({
     setCurrentDay: mockSetCurrentDay,
 }));
 
-jest.mock('../../states/useForcastApiResponse');
+jest.mock('../../states/useForecastApiResponse');
 
 const mockHandleFetchWeather = jest.fn();
 jest.mock('../../hooks/useGetCurrentWeather', () => () => ({

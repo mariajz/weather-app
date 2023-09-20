@@ -21,7 +21,7 @@ class CustomError extends Error {
 }
 
 const mockSetResponse = jest.fn();
-jest.mock('../states/useForcastApiResponse', () => () => ({
+jest.mock('../states/useForecastApiResponse', () => () => ({
     setResponse: mockSetResponse,
 }));
 

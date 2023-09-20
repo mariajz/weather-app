@@ -2,7 +2,7 @@ import { render } from '@testing-library/react-native';
 import React from 'react';
 import { View as MockView } from 'react-native';
 import { mockSuccessResponse } from '../../api/weather-api/current-weather/mocks/MockSuccessResponse';
-import useForcastApiResponse from '../../states/useForcastApiResponse';
+import useForecastApiResponse from '../../states/useForecastApiResponse';
 import ContentLoaderScreen from './ContentLoaderScreen';
 
 jest.mock('../../components/loader', () => {
@@ -21,7 +21,7 @@ jest.mock('@react-navigation/native', () => ({
     }),
 }));
 
-jest.mock('../../states/useForcastApiResponse');
+jest.mock('../../states/useForecastApiResponse');
 
 const mockHandleFetchWeather = jest.fn();
 jest.mock('../../hooks/useGetCurrentWeather', () => () => ({
@@ -30,7 +30,7 @@ jest.mock('../../hooks/useGetCurrentWeather', () => () => ({
 
 describe('ContentLoaderScreen', () => {
     beforeEach(() => {
-        useForcastApiResponse.mockImplementation(() => ({
+        useForecastApiResponse.mockImplementation(() => ({
             response: mockSuccessResponse,
         }));
     });
@@ -52,7 +52,7 @@ describe('ContentLoaderScreen', () => {
     `(
         'should call handleFetchWeather $handleFetchWeatherCalledTimes times when response is $responseType',
         ({ response, handleFetchWeatherCalledTimes }) => {
-            useForcastApiResponse.mockImplementation(() => ({
+            useForecastApiResponse.mockImplementation(() => ({
                 response: response,
             }));
 
@@ -65,7 +65,7 @@ describe('ContentLoaderScreen', () => {
     );
 
     it('should navigate to dashboard when response is valid and non empty', async () => {
-        useForcastApiResponse.mockImplementation(() => ({
+        useForecastApiResponse.mockImplementation(() => ({
             response: mockSuccessResponse,
         }));
 

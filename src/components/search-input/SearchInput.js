@@ -44,6 +44,11 @@ const SearchInput = ({ placeholder }) => {
         setLocations([]);
     };
 
+    const handleOnDropDownItemPress = async ({ lat, lon }) => {
+        setSearchLocation(`${lat},${lon}`);
+        handleOnBackdropPress();
+    };
+
     useEffect(() => {
         if (response?.length !== 0) {
             setLocations(response);
@@ -84,11 +89,6 @@ const SearchInput = ({ placeholder }) => {
             handleFetchLocationData(userInput);
         }
     }, [userInput]);
-
-    const handleOnDropDownItemPress = async ({ lat, lon }) => {
-        setSearchLocation(`${lat},${lon}`);
-        handleOnBackdropPress();
-    };
 
     const ModalContent = (
         <>

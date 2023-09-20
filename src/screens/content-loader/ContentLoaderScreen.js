@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import Loader from '../../components/loader';
 import useGetCurrentWeather from '../../hooks/useGetCurrentWeather';
-import useForcastApiResponse from '../../states/useForcastApiResponse';
+import useForecastApiResponse from '../../states/useForecastApiResponse';
 
 const ContentLoaderScreen = () => {
     const { handleFetchWeather } = useGetCurrentWeather();
-    const { response } = useForcastApiResponse();
+    const { response } = useForecastApiResponse();
     const navigation = useNavigation();
 
     useEffect(() => {
