@@ -21,19 +21,6 @@ const ForecastApiService = () => {
         days: 14,
     };
 
-    const errorPopupProps = {
-        title: 'Error',
-        description:
-            'We have encountered an error while fetching weather details',
-        onClose: () => {
-            removePopup();
-            navigation.navigate({
-                name: 'ExitScreen',
-                params: {},
-            });
-        },
-    };
-
     const ForecastApi = useCallback(
         async ({ isMocked }) => {
             if (isMocked) {
@@ -54,7 +41,19 @@ const ForecastApiService = () => {
                     // eslint-disable-next-line no-console
                     console.log('Error in fetching forecast data:', error);
                     setResponse(undefined);
-                    showPopup(errorPopupProps);
+                    showPopup({
+                        title: 'Error',
+                        description:
+                            error?.response?.data?.error?.message ||
+                            'We have encountered an error while fetching weather details',
+                        onClose: () => {
+                            removePopup();
+                            navigation.navigate({
+                                name: 'ExitScreen',
+                                params: {},
+                            });
+                        },
+                    });
                 });
         },
 

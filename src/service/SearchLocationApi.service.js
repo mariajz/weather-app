@@ -10,13 +10,6 @@ const SearchLocationApiService = () => {
     const { setResponse, setError } = useLocationSearchApiResponse();
     const { userInput } = useUserInput();
 
-    const errorPopupProps = {
-        title: 'Error',
-        description: 'Error fetching requested location data',
-        onClose: () => {
-            removePopup();
-        },
-    };
     const SearchLocationApi = useCallback(
         async ({ isMocked }) => {
             if (isMocked) {
@@ -42,7 +35,15 @@ const SearchLocationApiService = () => {
                     console.log('Error in fetching locations data:', error);
                     setResponse(undefined);
                     setError(true);
-                    showPopup(errorPopupProps);
+                    showPopup({
+                        title: 'Error',
+                        description:
+                            error?.response?.data?.error?.message ||
+                            'Error fetching requested location data',
+                        onClose: () => {
+                            removePopup();
+                        },
+                    });
                 });
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps

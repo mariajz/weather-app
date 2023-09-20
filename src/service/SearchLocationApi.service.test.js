@@ -9,6 +9,15 @@ jest.mock('../api/weather-api/get-locations/Api', () => {
         call: mockCall,
     }));
 });
+class CustomError extends Error {
+    constructor(response, code) {
+        super();
+        this.response = response;
+        this.config = {};
+        this.code = code;
+        this.request = {};
+    }
+}
 
 const mockSetResponse = jest.fn();
 const mockSetError = jest.fn();
@@ -77,8 +86,17 @@ describe('Tests for SearchLocationApi.service', () => {
     it('should set response as undefined , set error as true and show error popup when api call fails', async () => {
         const consoleLogSpy = jest.spyOn(console, 'log');
         const { result } = renderSearchLocationApiService();
-        const error = new Error('Error in fetching locations data');
-        mockCall.mockRejectedValueOnce(error);
+        const error = new CustomError({
+            response: {
+                status: 403,
+                data: {},
+                headers: {},
+            },
+            config: {},
+            code: 'SOME_ERROR_CODE',
+            request: {},
+        });
+        mockCall.mockRejectedValueOnce(error.response);
 
         await act(async () => {
             await result.current.SearchLocationApi({ isMocked: false });
@@ -87,13 +105,79 @@ describe('Tests for SearchLocationApi.service', () => {
         expect(consoleLogSpy).toHaveBeenCalledTimes(1);
         expect(consoleLogSpy).toHaveBeenCalledWith(
             'Error in fetching locations data:',
-            error,
+            {
+                response: {
+                    status: 403,
+                    data: {},
+                    headers: {},
+                },
+                config: {},
+                code: 'SOME_ERROR_CODE',
+                request: {},
+            },
         );
         expect(mockSetResponse).toHaveBeenCalledTimes(1);
         expect(mockSetResponse).toHaveBeenCalledWith(undefined);
         expect(mockShowPopup).toHaveBeenCalledTimes(1);
         expect(mockShowPopup).toHaveBeenCalledWith({
             description: 'Error fetching requested location data',
+            onClose: expect.any(Function),
+            title: 'Error',
+        });
+        expect(mockSetError).toBeCalledTimes(1);
+        expect(mockSetError).toHaveBeenCalledWith(true);
+
+        mockShowPopup.mock.calls[0][0].onClose();
+
+        expect(mockRemovePopup).toHaveBeenCalledTimes(1);
+    });
+
+    it('should set response as undefined , set error description to returned error and show error popup when api call fails returning an error', async () => {
+        const consoleLogSpy = jest.spyOn(console, 'log');
+        const { result } = renderSearchLocationApiService();
+        const error = new CustomError({
+            response: {
+                status: 403,
+                data: {
+                    error: {
+                        message: 'API key invalid',
+                    },
+                },
+                headers: {},
+            },
+            config: {},
+            code: 'SOME_ERROR_CODE',
+            request: {},
+        });
+        mockCall.mockRejectedValueOnce(error.response);
+
+        await act(async () => {
+            await result.current.SearchLocationApi({ isMocked: false });
+        });
+
+        expect(consoleLogSpy).toHaveBeenCalledTimes(1);
+        expect(consoleLogSpy).toHaveBeenCalledWith(
+            'Error in fetching locations data:',
+            {
+                response: {
+                    status: 403,
+                    data: {
+                        error: {
+                            message: 'API key invalid',
+                        },
+                    },
+                    headers: {},
+                },
+                config: {},
+                code: 'SOME_ERROR_CODE',
+                request: {},
+            },
+        );
+        expect(mockSetResponse).toHaveBeenCalledTimes(1);
+        expect(mockSetResponse).toHaveBeenCalledWith(undefined);
+        expect(mockShowPopup).toHaveBeenCalledTimes(1);
+        expect(mockShowPopup).toHaveBeenCalledWith({
+            description: 'API key invalid',
             onClose: expect.any(Function),
             title: 'Error',
         });

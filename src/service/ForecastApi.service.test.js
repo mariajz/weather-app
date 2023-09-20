@@ -10,6 +10,16 @@ jest.mock('../api/weather-api/current-weather/Api', () => {
     }));
 });
 
+class CustomError extends Error {
+    constructor(response, code) {
+        super();
+        this.response = response;
+        this.config = {};
+        this.code = code;
+        this.request = {};
+    }
+}
+
 const mockSetResponse = jest.fn();
 jest.mock('../states/useForcastApiResponse', () => () => ({
     setResponse: mockSetResponse,
@@ -93,11 +103,80 @@ describe('Tests for ForecastApi.service', () => {
         expect(mockSetResponse).toHaveBeenCalledTimes(0);
     });
 
-    it('should set response as undefined and show error popup when api call fails', async () => {
+    it('should set response as undefined and show error popup when api call fails and display the error returned from api', async () => {
         const consoleLogSpy = jest.spyOn(console, 'log');
         const { result } = renderForecastApiService();
-        const error = new Error('Error in fetching forecast data');
-        mockCall.mockRejectedValueOnce(error);
+        const error = new CustomError({
+            response: {
+                status: 403,
+                data: {
+                    error: {
+                        message: 'API key invalid',
+                    },
+                },
+                headers: {},
+            },
+            config: {},
+            code: 'SOME_ERROR_CODE',
+            request: {},
+        });
+
+        mockCall.mockRejectedValueOnce(error.response);
+
+        await act(async () => {
+            await result.current.ForecastApi({ isMocked: false });
+        });
+
+        expect(consoleLogSpy).toHaveBeenCalledWith(
+            'Error in fetching forecast data:',
+            {
+                response: {
+                    status: 403,
+                    data: {
+                        error: {
+                            message: 'API key invalid',
+                        },
+                    },
+                    headers: {},
+                },
+                config: {},
+                code: 'SOME_ERROR_CODE',
+                request: {},
+            },
+        );
+        expect(mockSetResponse).toHaveBeenCalledTimes(1);
+        expect(mockSetResponse).toHaveBeenCalledWith(undefined);
+        expect(mockShowPopup).toHaveBeenCalledTimes(1);
+        expect(mockShowPopup).toHaveBeenCalledWith({
+            description: 'API key invalid',
+            onClose: expect.any(Function),
+            title: 'Error',
+        });
+
+        mockShowPopup.mock.calls[0][0].onClose();
+
+        expect(mockRemovePopup).toHaveBeenCalledTimes(1);
+        expect(mockNavigate).toHaveBeenCalledTimes(1);
+        expect(mockNavigate).toHaveBeenLastCalledWith({
+            name: 'ExitScreen',
+            params: {},
+        });
+    });
+
+    it('should set response as undefined and show error popup with default description when api call fails but no error is passed', async () => {
+        const consoleLogSpy = jest.spyOn(console, 'log');
+        const { result } = renderForecastApiService();
+        const error = new CustomError({
+            response: {
+                status: 403,
+                data: {},
+                headers: {},
+            },
+            config: {},
+            code: 'SOME_ERROR_CODE',
+            request: {},
+        });
+        mockCall.mockRejectedValueOnce(error.response);
 
         await act(async () => {
             await result.current.ForecastApi({ isMocked: false });
@@ -106,7 +185,16 @@ describe('Tests for ForecastApi.service', () => {
         expect(consoleLogSpy).toHaveBeenCalledTimes(1);
         expect(consoleLogSpy).toHaveBeenCalledWith(
             'Error in fetching forecast data:',
-            error,
+            {
+                response: {
+                    status: 403,
+                    data: {},
+                    headers: {},
+                },
+                config: {},
+                code: 'SOME_ERROR_CODE',
+                request: {},
+            },
         );
         expect(mockSetResponse).toHaveBeenCalledTimes(1);
         expect(mockSetResponse).toHaveBeenCalledWith(undefined);
