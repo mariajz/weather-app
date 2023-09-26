@@ -11,7 +11,9 @@
         "test": "jest --no-coverage",
         "test:staged": "node scripts/runTestsForChangedFiles.js",
         "metro": "scripts/start-metro-bundler.sh",
-        "bundle:debug": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && cd android && ./gradlew assembleDebug"
+        "android-bundle": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
+        "android-bundle:debug": "android-bundle && cd android && ./gradlew assembleDebug",
+        "android-bundle:release": "android-bundle && cd android && ./gradlew assembleRelease"
     },
     "dependencies": {
         "@babel/preset-react": "^7.22.5",
