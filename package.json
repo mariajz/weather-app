@@ -10,7 +10,8 @@
         "start": "react-native start",
         "test": "jest --no-coverage",
         "test:staged": "node scripts/runTestsForChangedFiles.js",
-        "metro": "scripts/start-metro-bundler.sh"
+        "metro": "scripts/start-metro-bundler.sh",
+        "bundle:debug": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && cd android && ./gradlew assembleDebug"
     },
     "dependencies": {
         "@babel/preset-react": "^7.22.5",
