@@ -69,3 +69,4 @@ coverage
 .vscode/
 android/app/src/main/assets/index.android.bundle
 android/app/src/main/res/drawable*
+ios/assets

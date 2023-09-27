@@ -12,8 +12,10 @@
         "test:staged": "node scripts/runTestsForChangedFiles.js",
         "metro": "scripts/start-metro-bundler.sh",
         "android-bundle": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
-        "android-bundle:debug": "android-bundle && cd android && ./gradlew assembleDebug",
-        "android-bundle:release": "android-bundle && cd android && ./gradlew assembleRelease"
+        "ios-bundle": "react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/main.jsbundle --assets-dest ios",
+        "android:debug": "android-bundle && cd android && ./gradlew assembleDebug",
+        "android:release": "android-bundle && cd android && ./gradlew assembleRelease",
+        "ios:release": "react-native run-ios --configuration=Release"
     },
     "dependencies": {
         "@babel/preset-react": "^7.22.5",
