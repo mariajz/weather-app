@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppVersion Should render AppVersion 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+    }
+  }
+>
+  <Text
+    testID="version"
+  >
+    Version 1.0(2)
+  </Text>
+</View>
+`;

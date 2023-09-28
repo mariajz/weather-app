@@ -9,5 +9,7 @@ exports[`AppWrapper should render SafeArea for android and ios 1`] = `
       "flexShrink": 1,
     }
   }
-/>
+>
+  <View />
+</RCTSafeAreaView>
 `;

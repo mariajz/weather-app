@@ -2,6 +2,7 @@ import { Provider } from 'jotai';
 import React from 'react';
 import { Platform, StatusBar } from 'react-native';
 import { StyledSafeArea } from './AppWrapper.style';
+import AppVersion from '../app-version';
 
 const AppWrapper = ({ children }) => {
     return (
@@ -12,7 +13,10 @@ const AppWrapper = ({ children }) => {
                     backgroundColor="transparent"
                 />
             )}
-            <StyledSafeArea>{children}</StyledSafeArea>
+            <StyledSafeArea>
+                {children}
+                <AppVersion />
+            </StyledSafeArea>
         </Provider>
     );
 };

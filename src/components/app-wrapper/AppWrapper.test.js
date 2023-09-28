@@ -1,6 +1,9 @@
 import { render } from '@testing-library/react-native';
 import React from 'react';
+import { View as MockView } from 'react-native';
 import AppWrapper from './AppWrapper';
+
+jest.mock('../app-version', () => () => <MockView />);
 
 describe('AppWrapper', () => {
     it('should render SafeArea for android and ios', () => {
