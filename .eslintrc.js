@@ -11,5 +11,6 @@ module.exports = {
         'prettier/prettier': 0,
         'react/jsx-no-undef': ['error', { allowGlobals: true }],
         'no-console': 'error',
+        'no-unused-vars': 'error',
     },
 };
